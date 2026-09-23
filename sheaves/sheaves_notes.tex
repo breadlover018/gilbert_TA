@@ -1,0 +1,84 @@
+\documentclass[12pt, a4paper]{article}
+
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amsthm}
+
+\usepackage{mathtools}
+\usepackage{cancel}
+\usepackage[T1]{fontenc}
+\usepackage[document]{ragged2e}
+\usepackage{fancyhdr} % for header and footer
+\usepackage{tcolorbox}
+%\usepackage{graphicx} %for inserting picture
+%\usepackage{float} % eh centering?
+%\usepackage{subfigure} % for side by side figure
+%\usepackage{array} % for fixed table
+\usepackage{palatino}
+\usepackage{titlesec}
+\usepackage{indentfirst}
+
+\usepackage[a4paper, top=3cm, bottom=3.5cm, left=3cm, right=3cm]{geometry}
+
+\pagestyle{plain}
+
+\setlength{\parindent}{1.5em} 
+\linespread{1.15}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\theoremstyle{definition}
+\newtheorem*{example}{Example}
+
+% Mengubah text default "Proof" menjadi "Bukti"
+%\addto\captionsindonesian{\renewcommand{\proofname}{Bukti}}
+
+\titleformat{\section}[block]
+  {\normalfont\normalsize\bfseries\centering\scshape} 
+  {\thesection.}                                     
+  {0.5em}
+  {}
+\titlespacing*{\section}{0pt}{3em}{1.5em}             
+
+\nopagebreak
+\fancypagestyle{plain}{
+  \fancyhf{}
+  \fancyfoot[C]{\thepage}                          
+  \renewcommand{\headrulewidth}{0pt}
+}
+
+\fancypagestyle{firstpage}{
+  \fancyhf{}
+  \fancyhead[L]{
+    \small\scshape Sheaves Notes\\
+    \small FMIPA ITB
+  }
+  \fancyfoot[C]{\thepage}
+  \renewcommand{\headrulewidth}{0pt}
+}
+
+\begin{document}
+    \thispagestyle{firstpage}
+
+    \begin{center}
+        \vspace*{0.8cm}
+        {\large\bfseries SHEAVES NOTE} \\[0.6cm]
+        {\normalsize for and by Gilbert Allister (10123021)}
+        \vspace*{0.8cm}
+    \end{center}
+
+
+
+    \section{Motivation}
+
+    $\mathcal{O}$
+
+    \section{Sheaf and Presheaf}
+    \begin{theorem}
+        hfoieah
+    \end{theorem}
+
+\end{document}
+
+

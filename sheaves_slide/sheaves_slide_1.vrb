@@ -1,0 +1,13 @@
+\begin{itemize}
+            \item Now notice if we restrict a restricted differentiable function, we still have differentiable function over there.
+            \item In another word, if we have $W \hookrightarrow V \hookrightarrow U$, we can have such diagram commutes.
+            \begin{figure}
+                \centering
+                \begin{tikzcd}
+                    \mathcal{O}(U) \arrow[rrdd, "{\exists res(U, W)}"', dashed] \arrow[rrrr, "{res(U, V)}"] &  &                &  & \mathcal{O}(V) \arrow[lldd, "{res(V, W)}"] \\
+                                                                                                            &  &                &  &                                            \\
+                                                                                                            &  & \mathcal{O}(W) &  &
+                \end{tikzcd}
+            \end{figure}
+
+        \end{itemize}

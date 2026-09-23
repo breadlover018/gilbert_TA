@@ -1,0 +1,310 @@
+\documentclass[10pt,aspectratio=1610]{beamer}
+%add handout after 12pt, to disable pause
+%use aspectratio=1610 to adjust 
+
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amsthm}
+
+\usepackage{mathtools}
+%\usepackage{cancel}
+\usepackage[T1]{fontenc}
+%\usepackage[document]{ragged2e}
+%\usepackage{fancyhdr} % for header and footer
+%\usepackage{tcolorbox}
+%\usepackage{graphicx} %for inserting picture
+%\usepackage{float} % eh centering?
+%\usepackage{subfigure} % for side by side figure
+%\usepackage{array} % for fixed table
+\usepackage{palatino}
+%\usepackage{titlesec} %for paragraph
+\usepackage{indentfirst}
+\usepackage{booktabs}
+\usepackage{tikz-cd}
+
+\usefonttheme{serif}
+\usepackage{newpxtext,newpxmath} 
+
+\setbeamertemplate{page number in head/foot}[totalframenumber]
+\setbeamertemplate{footline}[frame number]
+
+
+
+\usetheme{berlin}
+\title{Sheaves Theory}
+\author{Gilbert Allister (10123021)}
+\date{\today}
+
+\theoremstyle{definition}
+%\newtheorem{definition}{Definition}
+
+\begin{document}
+    \frame{\titlepage}
+
+    \begin{frame}{Table of Content}
+        \tableofcontents
+    \end{frame}
+
+    \begin{frame}{Goal of This Presentation}
+        \begin{enumerate}
+            \item To understand the object of Presheaf, Stalk, Germs and Sheaf, and their morfism,
+            \item To build intuition behind those objects,
+            \item To understand the application of category theory.
+        \end{enumerate}
+        
+    \end{frame}
+
+    \section{Preliminaries}
+
+    \begin{frame}{Some Prelim: Category Theory}
+        \begin{itemize}
+            \item Category and Morphism definition
+            \begin{definition}[Category]
+                Define $\mathcal{C}$ as category if it has \textbf{object}, \textbf{morphism},  and \textbf{composition} , such that
+                \begin{itemize}
+                    \item A class of $Ob\mathcal{C}$, called as class of object,
+                    \item For each pair of object, a set denote $\mathcal{C}(X,Y)$ or $Hom(X, Y)$ called as morphism, from $X$ to $Y$,
+                    \item For each triple $(X,Y,Z)$ objects, we have a map $\mathcal{C}(X,Y) \times \mathcal{C}(Y,Z) \to \mathcal{C}(X,Z)$ define as composition, such that it has associativity and identity, such that 
+                    \begin{enumerate}
+                        \item If $f \in \mathcal{C}(X,Y)$, $g \in \mathcal{C}(Y,Z)$, and $h \in \mathcal{C}(Z,W)$, we have $h(gf) = (hg)f$
+                        \item For each object $X \in \mathcal{C}$, we have $id_X \in \mathcal{C}(X,X)$, such that for every $f \in \mathcal{C}(X,Y)$ and $g \in \mathcal{C}(Z,X)$, we have $f id_X = f$ and $id_X g= g$.
+                    \end{enumerate}
+                    
+                \end{itemize}
+                
+            \end{definition}
+
+            \item Examples: Sets with functions, Group with group action, Poset with $\leq$
+            \item Not a category example: the category of all category(?)
+        \end{itemize}
+    \end{frame}
+
+    \begin{frame}{Some Prelim: Category Theory}
+        \begin{itemize}
+            \item Functors
+            \item Yoneda Lemma 
+            \item Examples that will be used
+            \begin{itemize}
+                \item $\mathcal{S}ets$
+                \item Ring of differentiable function $\mathcal{O}$
+            \end{itemize}
+            
+        \end{itemize}
+    \end{frame}
+
+    \begin{frame}{Some Prelim: Category Theory}
+        \begin{itemize}
+            \item Colimit
+            \item Adjoint
+        \end{itemize}
+        
+    \end{frame}
+
+    \begin{frame}{Some Prelim: Topology}
+        \begin{itemize}
+            \item Topological space definition
+            \begin{definition}[Topology]  
+                Let $X$ be a set. Define $\mathcal{T}$ as \textbf{topology}  on set $X$ if 
+                \begin{enumerate}
+                    \item $\emptyset$ and $X$ in $\mathcal{T}$
+                    \item The union of the elements of any subcollection of $\mathcal{T}$ is in $\mathcal{T}$
+                    \item The intersection of the elements of any finite subcollection of $\mathcal{T}$ is in $\mathcal{T}$
+                \end{enumerate}
+                We call $X$ as \textbf{topological space} if it has $\mathcal{T}$ as its topology.
+                 
+            \end{definition}    
+            \item Open set definition
+        \end{itemize}
+        
+    \end{frame}
+
+    \section{Motivation}
+
+    \begin{frame}{Motivation}
+        
+        \begin{itemize}
+            \item Why study sheaves? 
+            \item Because we need to use sheaves of function to explain schemes.
+            \item Sheaf called as 'sheaf' because it glues every local data information. Presheaf is 'almost' sheaf, and it is still good idea to introduce it first.
+            \item Fun Fact: Sheaves was invented by Jean Leray (a French Mathematician) in prison during WWII!
+        \end{itemize}
+        
+    \end{frame}
+
+    \begin{frame}{Restriction Map}
+        \begin{itemize}
+            \item Let $X$ be topological space. Suppose we have bunch of open sets, by let $U \subseteq X$ denote any open set and bunch of differentiable function on open set $U$. 
+            \item Those differentiable functions on open set $U$ exudes a ring, denote this as $\mathcal{O}(U)$
+            \item Notice if we have open set $V \subseteq U$, we can have a differentiable function at $V$. 
+            \item In another word, if $V \subseteq U$ such that we have inclusion map from $V$ to $U$, we have a restriction map $res_{U, V}: \mathcal{O}(U) \to \mathcal{O}(V)$ 
+             
+        \end{itemize}
+        
+    \end{frame}
+
+    \begin{frame}[fragile]
+        \begin{itemize}
+            \item Now notice if we restrict a restricted differentiable function, we still have differentiable function over there.
+            \item In another word, if we have $W \hookrightarrow V \hookrightarrow U$, we can have such diagram commutes.
+            \begin{figure}
+                \centering
+                \begin{tikzcd}
+                    \mathcal{O}(U) \arrow[rrdd, "{\exists res(U, W)}"', dashed] \arrow[rrrr, "{res(U, V)}"] &  &                &  & \mathcal{O}(V) \arrow[lldd, "{res(V, W)}"] \\
+                                                                                                            &  &                &  &                                            \\
+                                                                                                            &  & \mathcal{O}(W) &  &                                           
+                \end{tikzcd}
+            \end{figure}
+            
+        \end{itemize}
+    \end{frame}
+
+    \begin{frame}{Sheaves Intuition}
+        \begin{itemize}
+            \item Now, let $U$ be 'big' open set and $\{U_i\}$ denote open covers of $U$, such that $\bigcup U_i = U$.
+            \item Suppose we have $f_1$ and $f_2$ differentiable function on $U$. 
+            \item If for every $U_i$, we have $f_1$ equal to $f_2$ on that $U_i$, then $f_1 = f_2$ to begin with. 
+            \item In another words, $\forall \{U_i\}_{i\in I}$ and $\forall f_1, f_2 \in \mathcal{O}(U)$, we have
+            \begin{align*}
+                res_{U, U_i} f_1 = res_{U, U_i}f_2 \Longrightarrow f_1 = f_2
+            \end{align*}
+            \item This notion is called as \textbf{locality}. We will formalize this on sheaf definition.
+        \end{itemize}
+    \end{frame}
+
+    \begin{frame}
+        \begin{itemize}
+            \item Next, with the same $U$ and $\{U_i\}$, suppose we have $f_1$ on $U_1$, $f_2$ on $U_2$ and so on, and assume they equal on the pairwise overlaps. 
+            \item Notice we can just "glued" them together into one differentiable function on $U$. 
+            \item Or in another words, $\forall i, f_i \in U_i$ such that $\forall i,j, res_{U_i \cap U_j} f_i = res_{U_i \cap U_j} f_j $, then 
+            \begin{align*}
+                \exists f \in \mathcal{O}(U) \forall i, res_{U, U_i} f = f_i
+            \end{align*}
+            \item This idea is called as \textbf{glueing}. Again, we will formalize this on the definition. 
+            \item Notice that this will work anyways with continous function, smooth function, and just plain function. Hence, this encourages us to define such nice properties formally.
+        \end{itemize}
+        
+    \end{frame}
+
+    \begin{frame}{Stalk and Germ Intuition}
+        \begin{itemize}
+            \item Similar to previous slide's idea, can we find the intersection where the functions are equal?
+            \item Then we define a relation such that 
+            \begin{align*}
+                (f, U)\sim(g, V) \iff \exists W \subset U \cap V, res_{U, W} \, f = res_{V, W} \, g
+            \end{align*}
+            for open set $U, V$ and $f \in \mathcal{O}(U)$ and $g \in \mathcal{O}(V)$
+            \item One can prove this is an equivalence relation.
+            \item Then we can define a class such that, 
+            \begin{align*}
+                \left\{(f, U): p \in U, f \in \mathcal{O}(U)\right\}
+            \end{align*}
+            for a point $p \in X$. 
+            \item This class is known as \textbf{germs} . We will define germs using this later. 
+        \end{itemize}
+        
+    \end{frame}
+
+    \begin{frame}
+        \begin{itemize}
+            \item Consider a set of germs. Notice if we have two germs and add them together, you get another germs.
+            \item Or explicitly speaking, let $f\in \mathcal{O}(U)$ and $g\in\mathcal{V}$, then $f+g$ is well-defined on $U+V$.
+            \item To sketch the proof of well-defineness, suppose we have $\widetilde{f}$ has the same germs to $f$, and also $\widetilde{g}$ to $g$, 
+        \end{itemize}
+        
+    \end{frame}
+
+
+    \section{Presheaves}
+    \begin{frame}{Definition}
+        \begin{itemize}
+            \item We will define presheaf in category theorist view.
+            \begin{definition}[Presheaf]
+            Define $\mathcal{F}$ as presheaf of a category $\mathcal{C}$ (can be a set, group, ring, top \dots) over a category $\mathcal{D}$ if it is a functor such that 
+            \begin{align*}
+                \mathcal{F}: \mathcal{D}^{op} \to \mathcal{C} (\text{or }\mathcal{S}ets, \mathcal{G}rp, \mathcal{R}ing, \mathcal{T}op)
+            \end{align*}
+            Or a contravariant functor from $\mathcal{D}$ to $\mathcal{C}$.
+        \end{definition}
+            \item For the scope of schemes theory, we let $\mathcal{D}$ be something of topological space.
+        \end{itemize}
+        
+    \end{frame}
+
+
+    \begin{frame}{Definition}
+        \begin{itemize}
+            \begin{definition}[Presheaf over Topological Space]
+                Let $X$ be a topological space, define $\mathcal{F}$ as \textbf{presheaf over}  $X$ if it is a contravariant functor from $Open(X)$ (the category of open subsets of $X$) to a category $\mathcal{C}$. We can write it as 
+                \begin{align*}
+                    \mathcal{F}: Open(X)^{op} \to \mathcal{C}
+                \end{align*}
+            \end{definition}
+            \item The category of $Open(X)$ has
+            \begin{itemize}
+                \item $\mathcal{O}bj$ = open subset of $U$ of $X$
+                \item $\mathcal{M}or$ = inclusion $V \subseteq U$
+            \end{itemize}
+            \item Of course one can check whether this is a category or not. 
+            
+        \end{itemize}
+    \end{frame}
+
+    \begin{frame}
+        \begin{itemize}
+            \item This means that presheaf has following data (as a functor)
+            \begin{align*}
+                \forall \text{open set } U \subseteq X, U  &\mapsto \mathcal{F}(U) \text{ (as a set or group or ring \dots)} \\
+                (V\subseteq U) & \mapsto (\mathcal{F}(U) \overset{res_{U, V}}{\longmapsto} \mathcal{F}(V))
+            \end{align*}
+            \item The identity and composition is obvious in previous explaination about restriction map.
+            \item This explains why we define presheaf as contravariant.
+            
+
+        \end{itemize}
+        
+    \end{frame}
+
+    \begin{frame}{Example}
+        
+    \end{frame}
+
+    \section{Stalk and Germs}
+    \begin{frame}
+        \begin{itemize}
+            \item The 'stalk' means a plant stalk, while the 'germ' means as 'cereal germ' to a stalk, as it is the heart of a function.
+        \end{itemize}
+        
+    \end{frame}
+
+
+    \section{Sheaves}
+
+    \begin{frame}
+        \begin{itemize}
+            \item Locality and 
+            \item Hence, presheaf failed as being 'sheaf' since it does not fulfill the locality (Uniqueness) and glueing(Existence).
+        \end{itemize}
+        
+    \end{frame}
+    
+    \section{Morphism of Presheaves and Sheaves}
+
+    \begin{frame}
+        feoia
+    \end{frame}
+
+    \section{Reference}
+
+    \begin{frame}{Reference}
+        \begin{enumerate}
+            \item Vakil, R. (2025). The Rising Sea: Foundations of Algebraic Geometry. Princeton University Press.
+            \item Khawarizmi, F. K. (2025) Slide Seminar I for 10122040, ITB
+            \item Munkres, J. R. (2014). Topology (2nd ed.). Prentice Hall, Inc.
+            \item Rosiak, D. (2020). Sheaf Theory through Examples (Abridged Version). arXiv preprint arXiv:2012.08669.
+        \end{enumerate}
+    \end{frame}
+    
+    
+
+\end{document}
