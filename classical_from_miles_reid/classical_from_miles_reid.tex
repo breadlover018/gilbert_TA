@@ -1,0 +1,114 @@
+\documentclass[12pt, a4paper]{article}
+
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amsthm}
+
+\usepackage{mathtools}
+\usepackage{cancel}
+\usepackage[T1]{fontenc}
+\usepackage[document]{ragged2e}
+\usepackage{fancyhdr} % for header and footer
+\usepackage{tcolorbox}
+%\usepackage{graphicx} %for inserting picture
+%\usepackage{float} % eh centering?
+%\usepackage{subfigure} % for side by side figure
+%\usepackage{array} % for fixed table
+\usepackage{palatino}
+\usepackage{titlesec}
+\usepackage{indentfirst}
+
+\usepackage[a4paper, top=3cm, bottom=3.5cm, left=3cm, right=3cm]{geometry}
+
+\pagestyle{plain}
+
+\setlength{\parindent}{1.5em} 
+\linespread{1.15}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem*{example}{Example}
+
+% Mengubah text default "Proof" menjadi "Bukti"
+%\addto\captionsindonesian{\renewcommand{\proofname}{Bukti}}
+
+\titleformat{\section}[block]
+  {\normalfont\normalsize\bfseries\centering\scshape} 
+  {\thesection.}                                     
+  {0.5em}
+  {}
+\titlespacing*{\section}{0pt}{3em}{1.5em}     
+
+\titleformat{\subsection}[block]
+  {\normalfont\normalsize\bfseries\scshape}
+  {\thesubsection}
+  {0.5em}
+  {}
+\titlespacing*{\subsection}{0pt}{2em}{1em}
+
+\nopagebreak
+\fancypagestyle{plain}{
+  \fancyhf{}
+  \fancyfoot[C]{\thepage}                          
+  \renewcommand{\headrulewidth}{0pt}
+}
+
+\fancypagestyle{firstpage}{
+  \fancyhf{}
+  \fancyhead[L]{
+    \small\scshape Miles Reid Notes\\
+    \small Undergraduate Algebraic Geometry \\
+    \small FMIPA ITB
+  }
+  \fancyfoot[C]{\thepage}
+  \renewcommand{\headrulewidth}{0pt}
+}
+
+\begin{document}
+    \thispagestyle{firstpage}
+
+    \begin{center}
+        \vspace*{0.8cm}
+        {\large\bfseries Miles Reid NOTE} \\[0.6cm]
+        {\normalsize for and by Gilbert Allister (10123021)}
+        \vspace*{0.8cm}
+    \end{center}
+
+
+
+    \section{Motivation}
+    This one is reference to Miles Reid Notes, for me to easily read and memorized in my mind.  
+    $\mathcal{O}$
+
+    \section{Affine Varieties}
+    \subsection{Noetherian Rings}
+    \begin{definition}[Noetherian]
+        A ring $R$ is called Noetherian if every ideal of $R$ is finitely generated.     
+    \end{definition}
+
+    \begin{theorem}[Hilbert Basis Theorem]
+        Let $R$ be a Noetherian ring. Then the polynomial ring $R[x]$ is also Noetherian.
+    \end{theorem}
+
+
+    \section{Zariski Topology}
+    \subsection{Algebraic Set}
+
+    \subsection{The Corresponding of Algebraic Set}
+
+    \subsection{Irreducible Algebraic Set}
+
+
+    \section{Nullstellensatz}
+    \subsection{Nullstellensatz theorem}
+    Or also know as Hilbert's zeros theorem. 
+
+    \subsection{Corollary of Nullstellensatz}
+
+
+\end{document}
+
+
