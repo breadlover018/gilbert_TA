@@ -1,6 +1,6 @@
-PWD c:\Users\Gilbert\OneDrive\Documents\7Univ\schemes\classical_from_miles_reid
+PWD c:\Users\Gilbert\OneDrive\Documents\7Univ\schemes\2. classical_from_miles_reid
 INPUT C:\Users\Gilbert\AppData\Local\MiKTeX\miktex\data\le\pdftex\pdflatex.fmt
-INPUT c:\Users\Gilbert\OneDrive\Documents\7Univ\schemes\classical_from_miles_reid\classical_from_miles_reid.tex
+INPUT c:\Users\Gilbert\OneDrive\Documents\7Univ\schemes\2. classical_from_miles_reid\classical_from_miles_reid.tex
 OUTPUT classical_from_miles_reid.log
 INPUT C:\Users\Gilbert\AppData\Local\Programs\MiKTeX\tex\latex\base\article.cls
 INPUT C:\Users\Gilbert\AppData\Local\Programs\MiKTeX\tex\latex\base\article.cls
@@ -223,13 +223,25 @@ INPUT C:\Users\Gilbert\AppData\Local\Programs\MiKTeX\fonts\tfm\adobe\palatino\pp
 INPUT C:\Users\Gilbert\AppData\Local\Programs\MiKTeX\fonts\vf\adobe\palatino\pplb8t.vf
 INPUT C:\Users\Gilbert\AppData\Local\Programs\MiKTeX\fonts\vf\adobe\palatino\pplri8t.vf
 INPUT C:\Users\Gilbert\AppData\Local\Programs\MiKTeX\fonts\tfm\adobe\palatino\pplri8r.tfm
+INPUT C:\Users\Gilbert\AppData\Local\Programs\MiKTeX\tex\latex\amsfonts\ueuf.fd
+INPUT C:\Users\Gilbert\AppData\Local\Programs\MiKTeX\tex\latex\amsfonts\ueuf.fd
+INPUT C:\Users\Gilbert\AppData\Local\Programs\MiKTeX\tex\latex\amsfonts\ueuf.fd
+INPUT C:\Users\Gilbert\AppData\Local\Programs\MiKTeX\fonts\tfm\public\amsfonts\euler\eufm10.tfm
+INPUT C:\Users\Gilbert\AppData\Local\Programs\MiKTeX\fonts\tfm\public\amsfonts\euler\eufm10.tfm
+INPUT C:\Users\Gilbert\AppData\Local\Programs\MiKTeX\fonts\tfm\public\amsfonts\euler\eufm7.tfm
 INPUT classical_from_miles_reid.aux
 INPUT C:\Users\Gilbert\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmmi12.pfb
 INPUT C:\Users\Gilbert\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmmi12.pfb
+INPUT C:\Users\Gilbert\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmmi8.pfb
+INPUT C:\Users\Gilbert\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmmi8.pfb
 INPUT C:\Users\Gilbert\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmr12.pfb
 INPUT C:\Users\Gilbert\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmr12.pfb
+INPUT C:\Users\Gilbert\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmr8.pfb
+INPUT C:\Users\Gilbert\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmr8.pfb
 INPUT C:\Users\Gilbert\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmsy10.pfb
 INPUT C:\Users\Gilbert\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmsy10.pfb
+INPUT C:\Users\Gilbert\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\euler\eufm10.pfb
+INPUT C:\Users\Gilbert\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\euler\eufm10.pfb
 INPUT C:\Users\Gilbert\AppData\Local\Programs\MiKTeX\fonts\type1\urw\palatino\uplb8a.pfb
 INPUT C:\Users\Gilbert\AppData\Local\Programs\MiKTeX\fonts\type1\urw\palatino\uplb8a.pfb
 INPUT C:\Users\Gilbert\AppData\Local\Programs\MiKTeX\fonts\type1\urw\palatino\uplr8a.pfb

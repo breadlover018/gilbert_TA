@@ -1,5 +1,5 @@
 # Fdb version 4
-["pdflatex"] 1790153754 "c:/Users/Gilbert/OneDrive/Documents/7Univ/schemes/classical_from_miles_reid/classical_from_miles_reid.tex" "classical_from_miles_reid.pdf" "classical_from_miles_reid" 1790153756 0
+["pdflatex"] 1790227004 "c:/Users/Gilbert/OneDrive/Documents/7Univ/schemes/2. classical_from_miles_reid/classical_from_miles_reid.tex" "classical_from_miles_reid.pdf" "classical_from_miles_reid" 1790227007 0
   "C:/Users/Gilbert/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map" 1788841685 299249 26d28ef5272eb27b8d17dd89eea8d8e4 ""
   "C:/Users/Gilbert/AppData/Local/MiKTeX/miktex/data/le/pdftex/pdflatex.fmt" 1697616076 24176129 5649241c8c1c41729baade5ac7f2d97f ""
   "C:/Users/Gilbert/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/base/8r.enc" 1458473887 4993 80dc9bab7f31fb78a000ccfed0e27cab ""
@@ -14,6 +14,8 @@
   "C:/Users/Gilbert/AppData/Local/Programs/MiKTeX/fonts/tfm/jknappen/ec/ecrm1200.tfm" 993062126 3152 4850ff0163852b7fab34bd55e1197f28 ""
   "C:/Users/Gilbert/AppData/Local/Programs/MiKTeX/fonts/tfm/public/amsfonts/cmextra/cmex7.tfm" 1233951848 1004 54797486969f23fa377b128694d548df ""
   "C:/Users/Gilbert/AppData/Local/Programs/MiKTeX/fonts/tfm/public/amsfonts/cmextra/cmex8.tfm" 1233951848 988 bdf658c3bfc2d96d3c8b02cfc1c94c20 ""
+  "C:/Users/Gilbert/AppData/Local/Programs/MiKTeX/fonts/tfm/public/amsfonts/euler/eufm10.tfm" 1233951852 1040 b84415f97d114011685943ade933dc71 ""
+  "C:/Users/Gilbert/AppData/Local/Programs/MiKTeX/fonts/tfm/public/amsfonts/euler/eufm7.tfm" 1233951852 1040 82eb6630b094bff824fccca83ff507f9 ""
   "C:/Users/Gilbert/AppData/Local/Programs/MiKTeX/fonts/tfm/public/amsfonts/symbols/msam10.tfm" 1233951854 916 f87d7c45f9c908e672703b83b72241a3 ""
   "C:/Users/Gilbert/AppData/Local/Programs/MiKTeX/fonts/tfm/public/amsfonts/symbols/msam7.tfm" 1233951854 928 2dc8d444221b7a635bb58038579b861a ""
   "C:/Users/Gilbert/AppData/Local/Programs/MiKTeX/fonts/tfm/public/amsfonts/symbols/msbm10.tfm" 1233951854 908 2921f8a10601f252058503cc6570e581 ""
@@ -29,8 +31,11 @@
   "C:/Users/Gilbert/AppData/Local/Programs/MiKTeX/fonts/tfm/public/cm/cmsy6.tfm" 1136765053 1116 933a60c408fc0a863a92debe84b2d294 ""
   "C:/Users/Gilbert/AppData/Local/Programs/MiKTeX/fonts/tfm/public/cm/cmsy8.tfm" 1136765053 1120 8b7d695260f3cff42e636090a8002094 ""
   "C:/Users/Gilbert/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi12.pfb" 1247596667 36741 0ee9e374ec3e30da87cdfb0ea3575226 ""
+  "C:/Users/Gilbert/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi8.pfb" 1247596666 35469 dcf3a5f2fc1862f5952e3ee5eb1d98c4 ""
   "C:/Users/Gilbert/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr12.pfb" 1247596667 32722 d7379af29a190c3f453aba36302ff5a9 ""
+  "C:/Users/Gilbert/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr8.pfb" 1247596667 32726 39f0f9e62e84beb801509898a605dbd5 ""
   "C:/Users/Gilbert/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb" 1247596667 32569 5e5ddc8df908dea60932f3c484a54c0d ""
+  "C:/Users/Gilbert/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/euler/eufm10.pfb" 1335366146 21098 d4aee7c0aac232caac5688b586b9363c ""
   "C:/Users/Gilbert/AppData/Local/Programs/MiKTeX/fonts/type1/urw/palatino/uplb8a.pfb" 1136828148 52406 dad2f72863a03727d5f536c64a69c452 ""
   "C:/Users/Gilbert/AppData/Local/Programs/MiKTeX/fonts/type1/urw/palatino/uplr8a.pfb" 1136828148 52665 661b1e6b26edb5f50dd491f8a701cb57 ""
   "C:/Users/Gilbert/AppData/Local/Programs/MiKTeX/fonts/type1/urw/palatino/uplri8a.pfb" 1136828148 50022 90249cba7e3e4e9845f80328d6f9bd13 ""
@@ -93,6 +98,7 @@
   "C:/Users/Gilbert/AppData/Local/Programs/MiKTeX/tex/latex/amscls/amsthm.sty" 1591023609 12594 0d51ac3a545aaaa555021326ff22a6cc ""
   "C:/Users/Gilbert/AppData/Local/Programs/MiKTeX/tex/latex/amsfonts/amsfonts.sty" 1358197772 5949 3f3fd50a8cc94c3d4cbf4fc66cd3df1c ""
   "C:/Users/Gilbert/AppData/Local/Programs/MiKTeX/tex/latex/amsfonts/amssymb.sty" 1358197772 13829 94730e64147574077f8ecfea9bb69af4 ""
+  "C:/Users/Gilbert/AppData/Local/Programs/MiKTeX/tex/latex/amsfonts/ueuf.fd" 1358197772 1047 4252767c0fde12e3ce9f914ef4bb1ea1 ""
   "C:/Users/Gilbert/AppData/Local/Programs/MiKTeX/tex/latex/amsfonts/umsa.fd" 1358197772 961 6518c6525a34feb5e8250ffa91731cff ""
   "C:/Users/Gilbert/AppData/Local/Programs/MiKTeX/tex/latex/amsfonts/umsb.fd" 1358197772 961 d02606146ba5601b5645f987c92e6193 ""
   "C:/Users/Gilbert/AppData/Local/Programs/MiKTeX/tex/latex/amsmath/amsbsy.sty" 1686931788 2222 499d61426192c39efd8f410ee1a52b9c ""
@@ -138,9 +144,9 @@
   "C:/Users/Gilbert/AppData/Local/Programs/MiKTeX/tex/latex/tools/verbatim.sty" 1686255640 7392 ed69c044ab18d5539723c1c7b8c2ee88 ""
   "C:/Users/Gilbert/AppData/Local/Programs/MiKTeX/tex/latex/trimspaces/trimspaces.sty" 1253169183 1380 971a51b00a14503ddf754cab24c3f209 ""
   "C:/Users/Gilbert/AppData/Local/Programs/MiKTeX/tex/latex/xcolor/xcolor.sty" 1656236890 56148 51a9a8571c07b9921892ae11063ae853 ""
-  "c:/Users/Gilbert/OneDrive/Documents/7Univ/schemes/classical_from_miles_reid/classical_from_miles_reid.tex" 1790153748 2944 2616c1a58c123b5cbab1be8f0e7dae28 ""
-  "classical_from_miles_reid.aux" 1790153756 1245 79a64056cdd9ebe7b35d9c9ec71149a0 "pdflatex"
-  "classical_from_miles_reid.tex" 1790153748 2944 2616c1a58c123b5cbab1be8f0e7dae28 ""
+  "c:/Users/Gilbert/OneDrive/Documents/7Univ/schemes/2. classical_from_miles_reid/classical_from_miles_reid.tex" 1790226998 4094 4155b34360d8ad7a64cf7f4d81bad0a7 ""
+  "classical_from_miles_reid.aux" 1790227006 1246 b24b77c63ecdd8eef6f222f4f487373b "pdflatex"
+  "classical_from_miles_reid.tex" 1790226998 4094 4155b34360d8ad7a64cf7f4d81bad0a7 ""
   (generated)
   "classical_from_miles_reid.aux"
   "classical_from_miles_reid.log"

@@ -80,9 +80,8 @@
 
 
     \section{Motivation}
-    This one is reference to Miles Reid Notes, for me to easily read and memorized in my mind.  
-    $\mathcal{O}$
-
+    This one is reference to Miles Reid Notes, for me to easily read and memorized in my mind. This one also summarization to Week 1 until Week 5 of my lecturer's consultation. 
+    
     \section{Affine Varieties}
     \subsection{Noetherian Rings}
     \begin{definition}[Noetherian]
@@ -104,8 +103,30 @@
 
     \section{Nullstellensatz}
     \subsection{Radical Ideals}
-    \subsection{Nullstellensatz theorem}
+    \subsection{Nullstellensatz theorems}
     Or also know as Hilbert's zeros theorem. 
+    \begin{theorem}[Weak Nullstellensatz, geometric form]
+      Suppose $k$ is an algebraically closed field. Let $I$ be a proper ideal in the polynomial ring $k[x_1, \ldots, x_n]$. Then we have 
+      \begin{align*}
+        V(I) \neq \emptyset
+      \end{align*} 
+      i.e., there exists a point $(a_1, \ldots, a_n) \in k^n$ such that $f(a_1, \ldots, a_n) = 0$ for all $f \in I$.
+    \end{theorem}
+
+
+    \begin{theorem}[Weak Nullstellensatz, algebraic form]
+      Suppose $k$ is an algebraically closed field, and let $\mathfrak{m}$ is maximal ideal of $k[x_1, \ldots, x_n]$, then we have
+      \begin{align*}
+        \mathfrak{m} = (x_1-a_1,\ldots, x_n-a_n)
+      \end{align*}
+    \end{theorem}
+
+    \begin{theorem}[Strong Nullstellensatz]
+      Suppose $k$ is an algebraically closed field. Let $I$ be an ideal in the polynomial ring $k[x_1, \ldots, x_n]$. Then the ideal of all polynomials that vanish on the variety defined by $I$ is equal to the radical of $I$, i.e.,
+      \begin{align*}
+        I(V(I)) = \sqrt{I}.
+      \end{align*}
+    \end{theorem}
 
     \subsection{Corollary of Nullstellensatz}
 
