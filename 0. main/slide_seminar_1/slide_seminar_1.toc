@@ -1,0 +1,5 @@
+\beamer@sectionintoc {1}{Introduction}{3}{0}{1}
+\beamer@sectionintoc {2}{Classical Algebraic Geometry and Affine Scheme}{6}{0}{2}
+\beamer@sectionintoc {3}{Scheme Theory}{13}{0}{3}
+\beamer@sectionintoc {4}{Divisor of Algebraic Curves}{21}{0}{4}
+\beamer@sectionintoc {5}{Conclusion and Next Plan}{29}{0}{5}

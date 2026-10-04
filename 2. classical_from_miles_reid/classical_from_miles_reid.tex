@@ -18,6 +18,7 @@
 \usepackage{palatino}
 \usepackage{titlesec}
 \usepackage{indentfirst}
+\usepackage{tikz-cd}
 
 \usepackage[a4paper, top=3cm, bottom=3.5cm, left=3cm, right=3cm]{geometry}
 
@@ -28,6 +29,7 @@
 
 \newtheorem{theorem}{Theorem}[section]
 \newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
 \theoremstyle{definition}
 \newtheorem{definition}[theorem]{Definition}
 \newtheorem*{example}{Example}
@@ -79,14 +81,45 @@
 
 
 
-    \section{Motivation}
-    This one is reference to Miles Reid Notes, for me to easily read and memorized in my mind. This one also summarization to Week 1 until Week 5 of my lecturer's consultation. 
+    \section{Motivation and Prelim that not mentioned in the book}
+    This one is reference to Miles Reid Notes, for me to easily read and memorized in my mind. I am very good at remembering but terribly slow to understand, so I need this note. This one also summarization to Week 1 until Week 5 of my lecturer's consultation. 
+
+    \subsection{Field Extension}
+
+
+    \subsection{Algebraic Field}
+    Using 
+
+
+    \subsection{Some discussed theorem that will not be mentioned}
+    Here is kinda important lemma, sometimes treated as definition in some book 
+    \begin{align*}
+      \mathfrak{m} \text{ is maximal ideal of ring K }\Leftrightarrow K/\mathfrak{m} \text{ is a field }
+    \end{align*}
     
     \section{Affine Varieties}
     \subsection{Noetherian Rings}
     \begin{definition}[Noetherian]
         A ring $R$ is called Noetherian if every ideal of $R$ is finitely generated.     
     \end{definition}
+
+    \begin{proposition}
+      Noetherian rings has equivalent statements
+      
+      \begin{itemize}
+        \item Every ideal of $R$ is finitely generated, i.e. for an ideal $I$ of $R$, there exists $f_1, f_2, ..., f_n \in R$ such that
+        \begin{align*}
+          I = (f_1, f_2, \ldots, f_n)
+        \end{align*}
+        \item For every ascending chain
+        \begin{align*}
+          I_1 \subset I_2 \subset \ldots \subset I_m \subset \ldots  
+        \end{align*}
+        of ideal ring $R$ terminates, i.e. there exist $I_N$ such that $I_N = I_{N+1}$  
+        \item Every non-empty set of ideal of $R$ has maximal element. 
+      \end{itemize}
+      
+    \end{proposition}
 
     \begin{theorem}[Hilbert Basis Theorem]
         Let $R$ be a Noetherian ring. Then the polynomial ring $R[x]$ is also Noetherian.
@@ -105,13 +138,7 @@
     \subsection{Radical Ideals}
     \subsection{Nullstellensatz theorems}
     Or also know as Hilbert's zeros theorem. 
-    \begin{theorem}[Weak Nullstellensatz, geometric form]
-      Suppose $k$ is an algebraically closed field. Let $I$ be a proper ideal in the polynomial ring $k[x_1, \ldots, x_n]$. Then we have 
-      \begin{align*}
-        V(I) \neq \emptyset
-      \end{align*} 
-      i.e., there exists a point $(a_1, \ldots, a_n) \in k^n$ such that $f(a_1, \ldots, a_n) = 0$ for all $f \in I$.
-    \end{theorem}
+
 
 
     \begin{theorem}[Weak Nullstellensatz, algebraic form]
@@ -119,6 +146,26 @@
       \begin{align*}
         \mathfrak{m} = (x_1-a_1,\ldots, x_n-a_n)
       \end{align*}
+    \end{theorem}
+
+    \begin{proof}
+      Let $\mathfrak{m}$ be maximal ideal of $k[x_1, \ldots, x_n]$, then we have $K = k[x_1, \ldots, x_n]/\mathfrak{m}$ is a field. Consider
+      \begin{center}
+        \begin{tikzcd}
+          k \arrow[rd, "\varphi"] & \\
+          k[x_1, \ldots, x_n] \arrow[r] & K 
+        \end{tikzcd}
+      \end{center}
+      Notice that $\psi$ is field extension and since $k$ is algebraically closed, then $\psi$ is iso.   
+      
+    \end{proof}
+
+    \begin{theorem}[Weak Nullstellensatz, geometric form]
+      Suppose $k$ is an algebraically closed field. Let $I$ be a proper ideal in the polynomial ring $k[x_1, \ldots, x_n]$. Then we have 
+      \begin{align*}
+        V(I) \neq \emptyset
+      \end{align*} 
+      i.e., there exists a point $(a_1, \ldots, a_n) \in k^n$ such that $f(a_1, \ldots, a_n) = 0$ for all $f \in I$.
     \end{theorem}
 
     \begin{theorem}[Strong Nullstellensatz]

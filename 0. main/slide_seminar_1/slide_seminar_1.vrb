@@ -1,0 +1,18 @@
+\frametitle{Sheafification}
+\begin{itemize}
+            \item \textbf{Problem.} For a morphism of sheaves $\varphi \colon \FF \to \GG$, the presheaves $U \mapsto \im \varphi(U)$ and $U \mapsto \coker \varphi(U)$ are in general not sheaves.
+        \end{itemize}
+        \begin{theorem}[Sheafification]
+            Let $\FF$ be a presheaf on $X$. There exist a sheaf $\FF^+$ and a morphism $\theta \colon \FF \to \FF^+$ such that for every sheaf $\GG$ and every morphism $\varphi \colon \FF \to \GG$ there is a unique morphism $\psi \colon \FF^+ \to \GG$ with $\varphi = \psi \circ \theta$:
+            \begin{center}
+                \begin{tikzcd}[row sep=1.6em, column sep=3.5em]
+                    \FF \arrow[r, "\theta"] \arrow[dr, "\varphi"'] & \FF^+ \arrow[d, dashed, "\exists!\, \psi"] \\
+                    & \GG
+                \end{tikzcd}
+            \end{center}
+            The pair $(\FF^+, \theta)$ is unique up to unique isomorphism.
+        \end{theorem}
+        \begin{itemize}
+            \item $\FF^+$ is called the \textbf{sheaf associated to} $\FF$. It has the same stalks: $\FF_p \cong \FF^+_p$ for all $p \in X$.
+            \item If $\FF$ is already a sheaf, then $\theta$ is an isomorphism.
+        \end{itemize}

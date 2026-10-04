@@ -1,0 +1,535 @@
+\documentclass[10pt,aspectratio=1610]{beamer}
+%add handout after 10pt, to disable pause
+%use aspectratio=1610 to adjust
+
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amsthm}
+
+\usepackage{mathtools}
+\usepackage[T1]{fontenc}
+\usepackage{booktabs}
+\usepackage{tikz-cd}
+
+\usefonttheme{serif}
+\usepackage{newpxtext,newpxmath}
+
+% NOTE: theme name is case-sensitive on Overleaf/Linux ("Berlin", not "berlin").
+% The theme must be loaded BEFORE the template settings below, otherwise it overrides them.
+\usetheme{Berlin}
+\setbeamertemplate{theorems}[numbered]
+\setbeamertemplate{navigation symbols}{}
+
+% Operators
+\DeclareMathOperator{\Spec}{Spec}
+\DeclareMathOperator{\rad}{rad}
+\DeclareMathOperator{\Div}{Div}
+\DeclareMathOperator{\CaDiv}{CaDiv}
+\DeclareMathOperator{\Cl}{Cl}
+\DeclareMathOperator{\CaCl}{CaCl}
+\DeclareMathOperator{\Pic}{Pic}
+\DeclareMathOperator{\divv}{div}
+\DeclareMathOperator{\Hom}{Hom}
+\DeclareMathOperator{\im}{im}
+\DeclareMathOperator{\coker}{coker}
+\newcommand{\OO}{\mathcal{O}}
+\newcommand{\FF}{\mathcal{F}}
+\newcommand{\GG}{\mathcal{G}}
+\newcommand{\KK}{\mathcal{K}}
+\newcommand{\LL}{\mathcal{L}}
+\newcommand{\A}{\mathbb{A}}
+\newcommand{\PP}{\mathbb{P}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\pp}{\mathfrak{p}}
+\newcommand{\mm}{\mathfrak{m}}
+\newcommand{\aaa}{\mathfrak{a}}
+
+\title[Divisor of Algebraic Curves\texorpdfstring{\quad\insertframenumber/\inserttotalframenumber}{}]{Divisor of Algebraic Curves}
+\subtitle{MA4091 Seminar Matematika I}
+\author[G. Allister (10123021)]{Gilbert Allister (10123021) \\
+Dosen Pembimbing: Rizal Afgani, Ph.D. \\
+Dosen Penguji 1: idk \\
+Dosen Penguji 2: idk
+}
+
+
+\date{ \fontsize{8pt}{8pt}\selectfont
+  Program Studi Sarjana Matematika \\
+  Fakultas Matematika dan Ilmu Pengetahuan Alam \\
+  Institut Teknologi Bandung \\[1cm]
+  October 5, 2026} % presentation date (was \today)
+
+
+\begin{document}
+    \frame{\titlepage}
+
+    \begin{frame}{Table of Contents}
+        \tableofcontents
+    \end{frame}
+
+    %=====================================================================
+    \section{Introduction}
+    %=====================================================================
+
+    \begin{frame}{Motivation}
+        \begin{itemize}
+            \item Let $k$ be an algebraically closed field. A polynomial $f \in k[x]$ is determined, up to a constant, by its zeros and their multiplicities:
+            \begin{align*}
+                f = c\,(x-a_1)^{m_1}\cdots(x-a_r)^{m_r}.
+            \end{align*}
+            \item In the same way, a rational function $f = g/h$ on the projective line $\PP^1 = k \cup \{\infty\}$ is determined, up to a constant, by its \textbf{zeros and poles}. We record them in a formal sum, the \textbf{divisor} of $f$.
+            \begin{example}
+                For $f = \dfrac{(x-1)^2}{x}$ we get $\divv(f) = 2\,[1] - [0] - [\infty]$: a double zero at $1$ and simple poles at $0$ and $\infty$.
+            \end{example}
+            \item \textbf{Question.} On an algebraic curve $X$, fix points $P_i$ and integers $n_i$. How large is the space of rational functions with poles of order at most $n_i$ at $P_i$ and no other poles? Divisors are the language for this question; the Riemann--Roch theorem is the answer.
+        \end{itemize}
+    \end{frame}
+
+    \begin{frame}{Motivation}
+        \begin{itemize}
+            \item \textbf{Generalizing zeros and poles:} divisors formalize the study of zeros and poles of rational (meromorphic) functions on an algebraic curve.
+            \item \textbf{Transition to schemes:} scheme theory extends classical varieties over an algebraically closed field, so that arithmetic situations (arbitrary base rings) and non-reduced structures can be handled in one language.
+            \item \textbf{Geometric invariants:} Weil and Cartier divisors are used to construct line bundles, which lead to central results such as the \textbf{Riemann--Roch theorem}.
+        \end{itemize}
+    \end{frame}
+
+    \begin{frame}{Aim of my Undergraduate Thesis}
+        The aims of my undergraduate thesis are:
+        \begin{enumerate}
+            \item To understand the basic objects of algebraic geometry.
+            \item To understand the basics of scheme theory and divisors of algebraic curves.
+            \item To identify the role of scheme theory in proving the Grothendieck--Riemann--Roch (GRR) theorem and its corollary, the Riemann--Roch (RR) theorem for curves.
+        \end{enumerate}
+        \bigskip
+        \textbf{This seminar} covers the first two aims: the definitions and the main statements, from affine varieties up to divisors on a curve.
+    \end{frame}
+
+
+    %=====================================================================
+    \section{Classical Algebraic Geometry and Affine Scheme}
+    %=====================================================================
+
+    \begin{frame}{Outline of this section}
+        \begin{enumerate}
+            \item Variety
+            \item Zariski Topology
+            \item Hilbert's Nullstellensatz
+            \item Affine Scheme
+        \end{enumerate}
+    \end{frame}
+
+    \begin{frame}{Variety}
+        \begin{definition}[Algebraic set]
+            Let $k$ be an algebraically closed field and $A = k[X_1, \ldots, X_n]$. For an ideal $J$ of $A$ and a subset $X \subseteq k^n$, define
+            \begin{align*}
+                V(J) = \{a \in k^n \mid f(a)=0 \ \forall f \in J\}, \qquad I(X) = \{f \in A \mid f(a) = 0 \ \forall a \in X\}.
+            \end{align*}
+            $V(J)$ is the \textbf{algebraic set} defined by $J$; $I(X)$ is the \textbf{ideal of} $X$.
+        \end{definition}
+        \begin{definition}[Affine variety]
+            A non-empty algebraic set $X$ is \textbf{irreducible} if it is not the union of two proper algebraic subsets. An \textbf{affine variety} is an irreducible algebraic set; its \textbf{coordinate ring} is $k[X] = A / I(X)$.
+        \end{definition}
+        \textbf{Example.} In $k^2$: $V(Y - X^2)$ is an affine variety (a parabola); $V(XY) = V(X) \cup V(Y)$ is not irreducible (two lines).
+    \end{frame}
+
+    \begin{frame}{Zariski Topology}
+        \begin{theorem}
+            Let $I$, $J$ and $J_\alpha$ ($\alpha \in \Lambda$) be ideals of $A = k[X_1, \ldots, X_n]$. Then
+            \begin{enumerate}
+                \item $V(\mathbf{0}) = k^n$ and $V(A) = \emptyset$;
+                \item if $I \subseteq J$, then $V(J) \subseteq V(I)$;
+                \item $\bigcap_{\alpha \in \Lambda} V(J_\alpha) = V\bigl(\sum_{\alpha \in \Lambda} J_\alpha\bigr)$;
+                \item $V(I) \cup V(J) = V(IJ) = V(I \cap J)$.
+            \end{enumerate}
+        \end{theorem}
+        \begin{itemize}
+            \item By (1), (3) and (4), the algebraic sets are the closed sets of a topology on $k^n$.
+            \begin{definition}[Zariski topology]
+                The \textbf{Zariski topology} on $k^n$ is the topology whose closed sets are exactly the algebraic sets $V(J)$.
+            \end{definition}
+            \item For $n = 1$ the closed sets are $k$ itself and the finite subsets of $k$, so the topology is not Hausdorff.
+        \end{itemize}
+    \end{frame}
+
+    \begin{frame}{Radical Ideal}
+        \begin{itemize}
+            \item Before stating the Nullstellensatz, we define the radical of an ideal in order to simplify the statement.
+            \begin{definition}[Radical ideal]
+                Let $I$ be an ideal of $A = k[X_1, \ldots, X_n]$. The \textbf{radical} of $I$ is
+                \begin{align*}
+                    \rad I = \{ f \in A : f^m \in I \text{ for some integer } m \geq 1\}.
+                \end{align*}
+                If $I = \rad I$, we say that $I$ is a \textbf{radical ideal}.
+            \end{definition}
+            \item $\rad I$ is an ideal containing $I$, and $V(\rad I) = V(I)$.
+            \item Every prime ideal is radical, and $I(X)$ is a radical ideal for every $X \subseteq k^n$.
+            \begin{example}
+                In $k[X]$ we have $\rad\,(X^2) = (X)$. Both ideals define the same algebraic set $\{0\}$, so the algebraic set does not remember the multiplicity.
+            \end{example}
+        \end{itemize}
+    \end{frame}
+
+    \begin{frame}{Hilbert's Nullstellensatz}
+        \begin{theorem}[Nullstellensatz, weak form]
+            Let $k$ be an algebraically closed field and $A = k[X_1, \ldots, X_n]$. If $\mm$ is a maximal ideal of $A$, then
+            \begin{align*}
+                \mm = (X_1 - a_1,\, X_2 - a_2,\, \ldots,\, X_n-a_n)
+            \end{align*}
+            for some point $(a_1, a_2, \ldots, a_n) \in k^n$.
+        \end{theorem}
+
+        \begin{theorem}[Nullstellensatz, strong form]
+            Let $k$ be an algebraically closed field and $A = k[X_1, \ldots, X_n]$. If $J$ is an ideal of $A$ with $J \neq A$, then $V(J) \neq \emptyset$. Furthermore, for every ideal $J$ of $A$,
+            \begin{align*}
+                I(V(J)) = \rad J.
+            \end{align*}
+        \end{theorem}
+    \end{frame}
+
+    \begin{frame}{The Algebra--Geometry Dictionary}
+        \begin{corollary}
+            The maps $X \mapsto I(X)$ and $J \mapsto V(J)$ are mutually inverse, inclusion-reversing bijections:
+            \begin{center}
+                \upshape
+                \begin{tabular}{rcl}
+                    \toprule
+                    \textbf{Geometry} (in $k^n$) & & \textbf{Algebra} (in $A = k[X_1,\ldots,X_n]$) \\
+                    \midrule
+                    algebraic sets & $\longleftrightarrow$ & radical ideals \\
+                    affine varieties & $\longleftrightarrow$ & prime ideals \\
+                    points & $\longleftrightarrow$ & maximal ideals \\
+                    \bottomrule
+                \end{tabular}
+            \end{center}
+        \end{corollary}
+        \begin{itemize}
+            \item So the geometry of $k^n$ can be recovered from the ring $A$ alone.
+            \item \textbf{Idea of scheme theory:} replace $A$ by an arbitrary commutative ring with $1$, and take \emph{all} prime ideals as the points of the space.
+        \end{itemize}
+    \end{frame}
+
+    \begin{frame}{Affine Scheme}
+        \begin{definition}[Spectrum of a ring]
+            Let $A$ be a commutative ring with $1$. The \textbf{spectrum} of $A$ is the set $\Spec A = \{\pp \subset A \mid \pp \text{ is a prime ideal}\}$. For an ideal $\aaa$ of $A$ and an element $f \in A$, define
+            \begin{align*}
+                V(\aaa) = \{\pp \in \Spec A \mid \pp \supseteq \aaa\}, \qquad D(f) = \{\pp \in \Spec A \mid f \notin \pp\}.
+            \end{align*}
+        \end{definition}
+        \begin{itemize}
+            \item The sets $V(\aaa)$ satisfy the same four properties as before, so they are the closed sets of the \textbf{Zariski topology} on $\Spec A$. The sets $D(f)$ form a basis of open sets.
+            \item An \textbf{affine scheme} is $\Spec A$ together with its structure sheaf $\OO_{\Spec A}$, the ``functions'' on $\Spec A$ (made precise in the next section).
+        \end{itemize}
+        \begin{example}
+            $\Spec k[X] = \{(X - a) \mid a \in k\} \cup \{(0)\}$. The points $(X-a)$ are closed; $(0)$ is the \textbf{generic point}, whose closure is the whole space.
+        \end{example}
+    \end{frame}
+
+    %=====================================================================
+    \section{Scheme Theory}
+    %=====================================================================
+
+    \begin{frame}{Outline of this section}
+        \begin{enumerate}
+            \item Presheaf
+            \item Sheaf
+            \item Morphism of Sheaves
+            \item Sheafification
+            \item Schemes
+            \item Morphism of Schemes
+        \end{enumerate}
+    \end{frame}
+
+    \begin{frame}{Presheaf}
+        \begin{definition}[Presheaf]
+            Let $X$ be a topological space. A \textbf{presheaf} $\FF$ of abelian groups on $X$ consists of
+            \begin{itemize}
+                \item an abelian group $\FF(U)$ for every open set $U \subseteq X$, and
+                \item a group homomorphism $\rho_{UV} \colon \FF(U) \to \FF(V)$ for every inclusion $V \subseteq U$ of open sets,
+            \end{itemize}
+            such that $\FF(\emptyset) = 0$, $\rho_{UU} = \mathrm{id}_{\FF(U)}$, and $\rho_{UW} = \rho_{VW} \circ \rho_{UV}$ whenever $W \subseteq V \subseteq U$.
+        \end{definition}
+        \begin{itemize}
+            \item Elements $s \in \FF(U)$ are called \textbf{sections} of $\FF$ over $U$; we write $s|_V = \rho_{UV}(s)$ and call $\rho_{UV}$ the \textbf{restriction map}. Presheaves of rings are defined in the same way.
+            \item The \textbf{stalk} of $\FF$ at a point $p \in X$ is
+            \begin{align*}
+                \FF_p = \varinjlim_{U \ni p} \FF(U) = \{(U, s) \mid p \in U,\ s \in \FF(U)\} / \sim,
+            \end{align*}
+            where $(U,s) \sim (V,t)$ if $s|_W = t|_W$ for some open $W$ with $p \in W \subseteq U \cap V$.
+        \end{itemize}
+    \end{frame}
+
+    \begin{frame}{Sheaf}
+        \begin{definition}[Sheaf]
+            A presheaf $\FF$ on $X$ is a \textbf{sheaf} if for every open set $U \subseteq X$ and every open cover $\{V_i\}_{i}$ of $U$:
+            \begin{enumerate}
+                \item (\textbf{Locality}) if $s \in \FF(U)$ satisfies $s|_{V_i} = 0$ for all $i$, then $s = 0$;
+                \item (\textbf{Gluing}) if $s_i \in \FF(V_i)$ satisfy $s_i|_{V_i \cap V_j} = s_j|_{V_i \cap V_j}$ for all $i, j$, then there exists $s \in \FF(U)$ with $s|_{V_i} = s_i$ for all $i$.
+            \end{enumerate}
+        \end{definition}
+        By locality, the section $s$ in the gluing axiom is unique.
+        \begin{example}
+            \begin{itemize}
+                \item On any topological space $X$, $\FF(U) = \{\text{continuous functions } U \to \mathbb{R}\}$ with the usual restriction of functions is a sheaf.
+                \item For $X = \mathbb{R}$, $\FF(U) = \{\text{bounded continuous functions } U \to \mathbb{R}\}$ is a presheaf but not a sheaf: the functions $s_i(x) = x$ on $V_i = (-i, i)$, $i \geq 1$, are bounded and agree on overlaps, but they glue to an unbounded function on $\mathbb{R}$.
+            \end{itemize}
+        \end{example}
+    \end{frame}
+
+    \begin{frame}[fragile]{Morphism of Sheaves}
+        \begin{definition}[Morphism of (pre)sheaves]
+            Let $\FF$, $\GG$ be presheaves on $X$. A \textbf{morphism} $\varphi \colon \FF \to \GG$ is a collection of group homomorphisms $\varphi(U) \colon \FF(U) \to \GG(U)$, one for each open set $U \subseteq X$, such that for every inclusion $V \subseteq U$ the following diagram commutes:
+            \begin{center}
+                \begin{tikzcd}[row sep=1.6em, column sep=3.5em]
+                    \FF(U) \arrow[r, "\varphi(U)"] \arrow[d, "\rho_{UV}"'] & \GG(U) \arrow[d, "\rho'_{UV}"] \\
+                    \FF(V) \arrow[r, "\varphi(V)"'] & \GG(V)
+                \end{tikzcd}
+            \end{center}
+            A morphism of sheaves is a morphism of the underlying presheaves.
+        \end{definition}
+        \begin{theorem}
+            A morphism $\varphi$ induces homomorphisms on stalks $\varphi_p \colon \FF_p \to \GG_p$. If $\FF$ and $\GG$ are \emph{sheaves}, then $\varphi$ is an isomorphism if and only if $\varphi_p$ is an isomorphism for every $p \in X$.
+        \end{theorem}
+    \end{frame}
+
+    \begin{frame}[fragile]{Sheafification}
+        \begin{itemize}
+            \item \textbf{Problem.} For a morphism of sheaves $\varphi \colon \FF \to \GG$, the presheaves $U \mapsto \im \varphi(U)$ and $U \mapsto \coker \varphi(U)$ are in general not sheaves.
+        \end{itemize}
+        \begin{theorem}[Sheafification]
+            Let $\FF$ be a presheaf on $X$. There exist a sheaf $\FF^+$ and a morphism $\theta \colon \FF \to \FF^+$ such that for every sheaf $\GG$ and every morphism $\varphi \colon \FF \to \GG$ there is a unique morphism $\psi \colon \FF^+ \to \GG$ with $\varphi = \psi \circ \theta$:
+            \begin{center}
+                \begin{tikzcd}[row sep=1.6em, column sep=3.5em]
+                    \FF \arrow[r, "\theta"] \arrow[dr, "\varphi"'] & \FF^+ \arrow[d, dashed, "\exists!\, \psi"] \\
+                    & \GG
+                \end{tikzcd}
+            \end{center}
+            The pair $(\FF^+, \theta)$ is unique up to unique isomorphism.
+        \end{theorem}
+        \begin{itemize}
+            \item $\FF^+$ is called the \textbf{sheaf associated to} $\FF$. It has the same stalks: $\FF_p \cong \FF^+_p$ for all $p \in X$.
+            \item If $\FF$ is already a sheaf, then $\theta$ is an isomorphism.
+        \end{itemize}
+    \end{frame}
+
+    \begin{frame}{Schemes}
+        \begin{definition}[Locally ringed space]
+            A \textbf{ringed space} is a pair $(X, \OO_X)$ of a topological space $X$ and a sheaf of rings $\OO_X$ on $X$. It is a \textbf{locally ringed space} if every stalk $\OO_{X,p}$ is a local ring.
+        \end{definition}
+        \begin{theorem}[Structure sheaf of $\Spec A$]
+            Let $A$ be a ring. There is a sheaf of rings $\OO$ on $\Spec A$ such that
+            \begin{align*}
+                \OO(D(f)) \cong A_f \ \text{ for all } f \in A, \qquad \OO_{\pp} \cong A_{\pp} \ \text{ for all } \pp \in \Spec A.
+            \end{align*}
+            In particular $\OO(\Spec A) \cong A$, and $(\Spec A, \OO)$ is a locally ringed space.
+        \end{theorem}
+        \begin{definition}[Scheme]
+            An \textbf{affine scheme} is a locally ringed space isomorphic to $(\Spec A, \OO)$ for some ring $A$. A \textbf{scheme} is a locally ringed space $(X, \OO_X)$ in which every point has an open neighbourhood $U$ such that $(U, \OO_X|_U)$ is an affine scheme.
+        \end{definition}
+    \end{frame}
+
+    \begin{frame}{Examples of Schemes}
+        \begin{example}[Affine space]
+            $\A^n_k = \Spec k[X_1, \ldots, X_n]$. By the Nullstellensatz, its closed points are the points of $k^n$; its other points are the prime ideals that are not maximal, i.e.\ the generic points of the subvarieties of positive dimension.
+        \end{example}
+        \begin{example}[Projective line]
+            Take two copies of the affine line, $U_0 = \Spec k[x]$ and $U_1 = \Spec k[y]$, and glue the open sets $D(x) \subset U_0$ and $D(y) \subset U_1$ along the isomorphism given by
+            \begin{align*}
+                k[y, y^{-1}] \xrightarrow{\ \sim\ } k[x, x^{-1}], \qquad y \mapsto x^{-1}.
+            \end{align*}
+            The result is a scheme $\PP^1_k$. It is not affine: $\OO(\PP^1_k) = k$, while $\PP^1_k$ has more than one point.
+        \end{example}
+        \begin{itemize}
+            \item This is the scheme-theoretic version of $\PP^1 = k \cup \{\infty\}$ from the motivation: $U_0$ contains the finite points and $U_1$ contains $\infty$ (the point $y = 0$).
+        \end{itemize}
+    \end{frame}
+
+    \begin{frame}{Morphism of Schemes}
+        \begin{definition}[Morphism of schemes]
+            A \textbf{morphism of schemes} $(X, \OO_X) \to (Y, \OO_Y)$ is a pair $(f, f^\#)$, where
+            \begin{itemize}
+                \item $f \colon X \to Y$ is a continuous map, and
+                \item $f^\# \colon \OO_Y \to f_*\OO_X$ is a morphism of sheaves of rings on $Y$, where $(f_*\OO_X)(V) = \OO_X(f^{-1}(V))$,
+            \end{itemize}
+            such that for every $p \in X$ the induced map on stalks $f^\#_p \colon \OO_{Y, f(p)} \to \OO_{X,p}$ is a \textbf{local homomorphism}: $(f^\#_p)^{-1}(\mm_{X,p}) = \mm_{Y,f(p)}$.
+        \end{definition}
+        \begin{theorem}
+            Every ring homomorphism $\varphi \colon A \to B$ induces a morphism of schemes $\Spec B \to \Spec A$, $\pp \mapsto \varphi^{-1}(\pp)$, and every morphism of schemes $\Spec B \to \Spec A$ arises from a unique $\varphi$:
+            \begin{align*}
+                \Hom_{\text{Schemes}}(\Spec B, \Spec A) \cong \Hom_{\text{Rings}}(A, B).
+            \end{align*}
+        \end{theorem}
+        A \textbf{scheme over} $k$ is a scheme $X$ together with a morphism $X \to \Spec k$.
+    \end{frame}
+
+    %=====================================================================
+    \section{Divisor of Algebraic Curves}
+    %=====================================================================
+
+    \begin{frame}{Outline of this section}
+        \begin{enumerate}
+            \item Algebraic Curves
+            \item Weil Divisor
+            \item Principal Divisors and the Class Group
+            \item Cartier Divisor
+            \item Line Bundles and the Riemann--Roch Theorem
+        \end{enumerate}
+    \end{frame}
+
+    \begin{frame}{Algebraic Curves}
+        \begin{definition}[Curve]
+            Let $k$ be an algebraically closed field. A \textbf{curve} over $k$ is an integral scheme $X$ of dimension $1$, proper over $k$, all of whose local rings are regular.
+        \end{definition}
+        \begin{itemize}
+            \item In classical language, $X$ is a nonsingular projective curve, for example $\PP^1_k$.
+            \item $X$ has a unique generic point $\xi$. The local ring $K(X) = \OO_{X,\xi}$ is a field, the \textbf{function field} of $X$; its elements are the rational functions on $X$.
+            \item For every closed point $P \in X$, the local ring $\OO_{X,P}$ is a discrete valuation ring with fraction field $K(X)$. Its valuation
+            \begin{align*}
+                v_P \colon K(X)^* \to \Z
+            \end{align*}
+            is the order of vanishing at $P$: $f$ has a \textbf{zero} of order $v_P(f)$ if $v_P(f) > 0$, and a \textbf{pole} of order $-v_P(f)$ if $v_P(f) < 0$.
+        \end{itemize}
+        \begin{example}
+            For $X = \PP^1_k$: $K(X) = k(x)$, and $v_\infty(g/h) = \deg h - \deg g$ for polynomials $g, h \neq 0$.
+        \end{example}
+    \end{frame}
+
+    \begin{frame}{Weil Divisor}
+        Let $X$ be a curve over $k$.
+        \begin{definition}[Weil divisor]
+            A \textbf{Weil divisor} on $X$ is a formal finite sum
+            \begin{align*}
+                D = \sum_{P} n_P \, P, \qquad n_P \in \Z,
+            \end{align*}
+            over the closed points $P$ of $X$, where $n_P = 0$ for all but finitely many $P$. The Weil divisors form the free abelian group $\Div(X)$ generated by the closed points of $X$.
+        \end{definition}
+        \begin{itemize}
+            \item The \textbf{degree} of $D$ is $\deg D = \sum_P n_P \in \Z$. This gives a group homomorphism $\deg \colon \Div(X) \to \Z$.
+            \item $D$ is \textbf{effective}, written $D \geq 0$, if $n_P \geq 0$ for all $P$.
+        \end{itemize}
+        \begin{example}
+            On $\PP^1_k$: $D = 2\,[1] - [0] - [\infty]$ is a Weil divisor of degree $0$; it is not effective.
+        \end{example}
+    \end{frame}
+
+    \begin{frame}{Principal Divisors and the Class Group}
+        \begin{definition}[Principal divisor]
+            The \textbf{divisor of} a rational function $f \in K(X)^*$ is $\divv(f) = \sum_{P} v_P(f)\, P$; this is a finite sum, since $f$ has only finitely many zeros and poles. A divisor of this form is called \textbf{principal}.
+        \end{definition}
+        Since $v_P(fg) = v_P(f) + v_P(g)$, the map $\divv \colon K(X)^* \to \Div(X)$ is a group homomorphism.
+        \begin{definition}[Linear equivalence, class group]
+            Two divisors $D, D'$ are \textbf{linearly equivalent}, written $D \sim D'$, if $D - D' = \divv(f)$ for some $f \in K(X)^*$. The \textbf{divisor class group} is $\Cl(X) = \Div(X) / \{\text{principal divisors}\}$.
+        \end{definition}
+        \begin{theorem}
+            On a curve $X$, every principal divisor has degree $0$: a rational function has as many zeros as poles, counted with multiplicity. Hence $\deg$ induces a homomorphism $\Cl(X) \to \Z$. For $X = \PP^1_k$ it is an isomorphism: $\Cl(\PP^1_k) \cong \Z$.
+        \end{theorem}
+    \end{frame}
+
+    \begin{frame}{Cartier Divisor}
+        \begin{itemize}
+            \item Let $\KK$ be the constant sheaf $K(X)$ on $X$, $\KK^*$ its sheaf of invertible elements, and $\OO_X^* \subseteq \KK^*$ the sheaf of units of $\OO_X$. The quotient sheaf $\KK^* / \OO_X^*$ is the sheafification of $U \mapsto \KK^*(U) / \OO_X^*(U)$.
+        \end{itemize}
+        \begin{definition}[Cartier divisor]
+            A \textbf{Cartier divisor} on $X$ is a global section of the sheaf $\KK^* / \OO_X^*$. Concretely, it is given by a family $\{(U_i, f_i)\}_i$, where $\{U_i\}$ is an open cover of $X$ and $f_i \in K(X)^*$, such that
+            \begin{align*}
+                f_i / f_j \in \OO_X^*(U_i \cap U_j) \quad \text{for all } i, j.
+            \end{align*}
+            It is \textbf{principal} if it can be given by a single pair $(X, f)$ with $f \in K(X)^*$.
+        \end{definition}
+        \begin{itemize}
+            \item So a Cartier divisor is a divisor that is \emph{locally} the divisor of a rational function; the $f_i$ are its \textbf{local equations}.
+            \item Cartier divisors can be defined on any scheme and are directly related to line bundles.
+        \end{itemize}
+    \end{frame}
+
+    \begin{frame}{Weil Divisors versus Cartier Divisors}
+        \begin{theorem}
+            Let $X$ be an integral, separated, noetherian scheme all of whose local rings are unique factorization domains. Then the group of Weil divisors is isomorphic to the group of Cartier divisors,
+            \begin{align*}
+                \Div(X) \cong \CaDiv(X) := \Gamma(X, \KK^*/\OO_X^*),
+            \end{align*}
+            and principal Weil divisors correspond to principal Cartier divisors.
+        \end{theorem}
+        \begin{itemize}
+            \item This applies to a curve $X$: every $\OO_{X,P}$ is a discrete valuation ring, hence a unique factorization domain. The correspondence is explicit:
+            \begin{align*}
+                \{(U_i, f_i)\}_i \ \longmapsto\ \sum_{P} v_P(f_{i})\, P \quad (\text{for any } i \text{ with } P \in U_i).
+            \end{align*}
+            This is well defined: if $P \in U_i \cap U_j$, then $f_i/f_j$ is a unit at $P$, so $v_P(f_i) = v_P(f_j)$.
+            \item Consequently $\Cl(X) \cong \CaCl(X) := \CaDiv(X)/\{\text{principal Cartier divisors}\}$.
+        \end{itemize}
+    \end{frame}
+
+    \begin{frame}{Divisors and Line Bundles}
+        \begin{itemize}
+            \item To a divisor $D$ with local equations $\{(U_i, f_i)\}$ we associate the subsheaf $\OO_X(D) \subseteq \KK$ generated by $f_i^{-1}$ on $U_i$. It is locally isomorphic to $\OO_X$, i.e.\ an \textbf{invertible sheaf} (line bundle).
+            \item $D \sim D'$ if and only if $\OO_X(D) \cong \OO_X(D')$, and $D \mapsto \OO_X(D)$ induces an isomorphism
+            \begin{align*}
+                \Cl(X) \cong \CaCl(X) \cong \Pic(X),
+            \end{align*}
+            where $\Pic(X)$ is the group of invertible sheaves up to isomorphism, under $\otimes$.
+            \item Global sections answer the question from the motivation:
+            \begin{align*}
+                L(D) := \Gamma(X, \OO_X(D)) = \{f \in K(X)^* \mid \divv(f) + D \geq 0\} \cup \{0\}, \qquad \ell(D) := \dim_k L(D).
+            \end{align*}
+        \end{itemize}
+    \end{frame}
+
+    \begin{frame}{The Riemann--Roch Theorem}
+        \begin{theorem}[Riemann--Roch]
+            Let $X$ be a curve of genus $g$ with canonical divisor $K_X$. For every divisor $D$ on $X$,
+            \begin{align*}
+                \ell(D) - \ell(K_X - D) = \deg D + 1 - g.
+            \end{align*}
+        \end{theorem}
+        \begin{example}
+            On $\PP^1_k$ we have $g = 0$. For $n \geq 0$, $L(n[\infty])$ is the space of polynomials in $x$ of degree at most $n$, so $\ell(n[\infty]) = n + 1 = \deg(n[\infty]) + 1 - g$.
+        \end{example}
+        \begin{itemize}
+            \item The theorem relates the number of linearly independent rational functions with prescribed poles to two numbers: the degree of $D$ and the genus of $X$.
+            \item Its proof, as a corollary of the Grothendieck--Riemann--Roch theorem, is the goal of the next seminar.
+        \end{itemize}
+    \end{frame}
+
+
+    %=====================================================================
+    \section{Conclusion and Next Plan}
+    %=====================================================================
+
+    \begin{frame}{Conclusion}
+        \begin{itemize}
+            \item The Nullstellensatz translates the geometry of algebraic sets in $k^n$ into the algebra of ideals of $k[X_1, \ldots, X_n]$. This motivates $\Spec A$, whose points are the prime ideals of an arbitrary ring $A$.
+            \item Sheaves describe data that are defined locally and can be glued. A scheme is a locally ringed space that is locally an affine scheme $(\Spec A, \OO)$.
+            \item On a curve $X$, every closed point $P$ gives a valuation $v_P$ on the function field. A Weil divisor is a formal sum of closed points, and $\divv(f)$ records the zeros and poles of $f$.
+            \item A Cartier divisor is given locally by one rational function. On a curve, Weil and Cartier divisors agree, and
+            \begin{align*}
+                \Cl(X) \cong \CaCl(X) \cong \Pic(X).
+            \end{align*}
+            \item The space $L(D)$ of functions with poles bounded by $D$ is the space of global sections of the line bundle $\OO_X(D)$; its dimension is governed by the Riemann--Roch theorem.
+        \end{itemize}
+    \end{frame}
+
+    \begin{frame}{Next presentation's plan}
+        \begin{enumerate}
+            \item To apply scheme theory to divisors of algebraic curves in more depth (invertible sheaves, the canonical divisor, cohomology of sheaves).
+            \item To prove the Grothendieck--Riemann--Roch (GRR) theorem using scheme theory.
+            \item To prove the Riemann--Roch (RR) theorem for curves as a corollary of the GRR theorem.
+        \end{enumerate}
+    \end{frame}
+
+    \begin{frame}{References}
+        \begin{thebibliography}{9}
+            \setbeamertemplate{bibliography item}[text]
+            \bibitem{hartshorne} R.~Hartshorne, \emph{Algebraic Geometry}, Graduate Texts in Mathematics 52, Springer, 1977.
+            \bibitem{liu} Q.~Liu, \emph{Algebraic Geometry and Arithmetic Curves}, Oxford Graduate Texts in Mathematics 6, Oxford University Press, 2002.
+            \bibitem{am} M.~F.~Atiyah and I.~G.~Macdonald, \emph{Introduction to Commutative Algebra}, Addison--Wesley, 1969.
+            \bibitem{fulton} W.~Fulton, \emph{Algebraic Curves: An Introduction to Algebraic Geometry}, W.~A.~Benjamin, 1969.
+        \end{thebibliography}
+    \end{frame}
+
+    \begin{frame}
+        \centering
+        {\Large Thank you}
+    \end{frame}
+
+\end{document}
