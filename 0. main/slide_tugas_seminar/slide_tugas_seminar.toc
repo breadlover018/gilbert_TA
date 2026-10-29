@@ -1,0 +1,5 @@
+\beamer@sectionintoc {1}{Introduction}{3}{0}{1}
+\beamer@sectionintoc {2}{Noetherian, Zariski and Nullstellesatz}{5}{0}{2}
+\beamer@sectionintoc {3}{Affine Varieties}{12}{0}{3}
+\beamer@sectionintoc {4}{Sheaf \text {\&} Affine Scheme}{19}{0}{4}
+\beamer@sectionintoc {5}{Closing \text {\&} References}{20}{0}{5}

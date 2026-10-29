@@ -1,0 +1,362 @@
+\documentclass[8pt]{beamer}
+%aspectratio=1610
+
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amsthm}
+
+\usepackage{mathtools}
+\usepackage[T1]{fontenc}
+\usepackage{booktabs}
+\usepackage{tikz-cd}
+\usepackage{stmaryrd}
+
+\usefonttheme{serif}
+\usepackage{newpxtext,newpxmath}
+
+\usetheme{Berlin}
+\setbeamertemplate{theorems}[numbered]
+\setbeamertemplate{navigation symbols}{}
+
+\definecolor{MySoftPink}{HTML}{F8BBD0}
+\definecolor{MyDarkTeal}{HTML}{00838F} 
+\definecolor{MyVividOrange}{HTML}{FF6D00}
+
+\setbeamercolor{structure}{fg=MyDarkTeal}
+
+\setbeamercolor{headline}{bg=MyDarkTeal, fg=white}
+\setbeamercolor{footline}{bg=MyDarkTeal, fg=white}
+
+\setbeamercolor{frametitle}{bg=MyDarkTeal, fg=white}
+
+\setbeamercolor{block title}{bg=MyDarkTeal, fg=white}
+\setbeamercolor{block body}{bg=MySoftPink!25, fg=black}
+
+\setbeamercolor{block title alerted}{bg=MyVividOrange, fg=white}
+\setbeamercolor{block body alerted}{bg=MyVividOrange!15, fg=black}
+
+\setbeamercolor{block title example}{bg=MySoftPink, fg=MyDarkTeal}
+\setbeamercolor{block body example}{bg=MySoftPink!15, fg=black}
+
+\setbeamercolor{alerted text}{fg=MyVividOrange}
+\setbeamercolor{item}{fg=MyVividOrange}
+
+% Operators
+\DeclareMathOperator{\Spec}{Spec}
+\DeclareMathOperator{\rad}{rad}
+\DeclareMathOperator{\Div}{Div}
+\DeclareMathOperator{\CaDiv}{CaDiv}
+\DeclareMathOperator{\Cl}{Cl}
+\DeclareMathOperator{\CaCl}{CaCl}
+\DeclareMathOperator{\Pic}{Pic}
+\DeclareMathOperator{\divv}{div}
+\DeclareMathOperator{\Hom}{Hom}
+\DeclareMathOperator{\im}{im}
+\DeclareMathOperator{\coker}{coker}
+\newcommand{\OO}{\mathcal{O}}
+\newcommand{\FF}{\mathcal{F}}
+\newcommand{\GG}{\mathcal{G}}
+\newcommand{\KK}{\mathcal{K}}
+\newcommand{\LL}{\mathcal{L}}
+\newcommand{\A}{\mathbb{A}}
+\newcommand{\PP}{\mathbb{P}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\pp}{\mathfrak{p}}
+\newcommand{\mm}{\mathfrak{m}}
+\newcommand{\aaa}{\mathfrak{a}}
+
+\theoremstyle{definition}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{remark}[theorem]{Remark}
+
+\title[Divisor of Algebraic Curves\texorpdfstring{\quad\insertframenumber/\inserttotalframenumber}{}]{Divisor of Algebraic Curves (Foundations Ver.)}
+\subtitle{
+Tugas Seminar I version \\    
+MA4091 Seminar Matematika I}
+\author[G. Allister (10123021)]{Gilbert Allister (10123021) \\
+Dosen Pembimbing: Rizal Afgani, Ph.D. \\
+Dosen Penguji: 
+}
+
+
+\date{ \fontsize{8pt}{8pt}\selectfont
+  Program Studi Sarjana Matematika \\
+  Fakultas Matematika dan Ilmu Pengetahuan Alam \\
+  Institut Teknologi Bandung \\[1cm]
+  October 29, 2026} % presentation date (was \today)
+
+\begin{document}
+    \frame{\titlepage}
+
+    \begin{frame}{Table of Contents}
+        \tableofcontents
+    \end{frame}
+
+    \section{Introduction}
+
+    \begin{frame}{Description of this Presentation}
+        \begin{itemize}
+            \item The Topic of this Final Paper is "Divisors of Algebraic Curves".
+            \item The foundations of this topic are Classical Algebraic Geometry, Scheme Theory and Commutative Algebra.
+            \item While the key machinaries of the topic are Sheaf Theory, Invertible Sheaves, and Weil/Cartier Divisors. 
+            \item Hence in this presentation, we shall present some foundational topics.
+        \end{itemize}
+        
+    \end{frame}
+
+
+    \begin{frame}{Motivation}
+        \begin{itemize}
+            \item Given a polynomial $p(x)$, we wished to understand the geometry of the solutions of $p(x) = 0$.
+        \end{itemize}
+        
+    \end{frame}
+
+    \section{Noetherian, Zariski and Nullstellesatz}
+
+    \begin{frame}{Outline of this section}
+        \begin{enumerate}
+            \item Noetherian Rings
+            \item Zariski Topology
+            \item Nullstellensatz Theorem
+        \end{enumerate}
+        
+    \end{frame}
+
+    \begin{frame}{Noetherian Rings}
+
+        \begin{definition}[Noetherian Ring]
+            A ring $A$ is \emph{Noetherian} if the following equivalent conditions hold:
+            \begin{enumerate}
+                \item[(i)] Every ideal $I \subset A$ is finitely generated; that is, for every ideal $I \subset A$, there exist $f_1, \dots, f_k \in I$ such that $I = (f_1, \dots, f_k)$.
+                \item[(ii)] Every ascending chain
+                \begin{align*}
+                    I_1 \subset I_2 \subset \dots \subset I_m \subset \dots
+                \end{align*}
+                of ideals of $A$ terminates, that is, the chain is eventually stationary, with $I_N = I_{N+1} = \dots$ (the ascending chain condition, or a.c.c.).
+                \item[(iii)] Every nonempty set of ideals of $A$ has a maximal element.
+            \end{enumerate}
+        \end{definition}
+
+        \begin{itemize}
+            \item For example, $\Z$ and $k[x]$ are Noetherian.
+            \item The intuition of Noetherian Ring is we want to work in ring that has finite generators.
+        \end{itemize}
+
+    \end{frame}
+
+
+    \begin{frame}
+        \begin{proposition}
+            (i) Suppose that $A$ is Noetherian, and $I \subset A$ an ideal; then the quotient ring $B = A/I$ is Noetherian.
+
+            (ii) Let $A$ be a Noetherian integral domain, and $A \subset K$ its field of fractions; let $\emptyset \neq S \subset A$ be a subset, and set
+            \begin{align*}
+                B = A[S^{-1}] = \left\{\frac{a}{b} \in K \;\middle|\; a \in A,\; b = 1\text{ or a product of elements of }S\right\}.
+            \end{align*}
+            Then $B$ is again Noetherian.
+        \end{proposition}
+
+        \begin{theorem}[Hilbert Basis Theorem] \label{thm:hilbert-basis}
+            For a ring $A$,
+            \begin{align*}
+                A \text{ Noetherian} \Rightarrow A[X] \text{ Noetherian}.
+            \end{align*}
+        \end{theorem}
+
+        \begin{corollary}
+            For $k$ a field, a finitely generated $k$-algebra is Noetherian.
+        \end{corollary}
+    \end{frame}
+
+    \begin{frame}{Algebraic set \& Zariski}
+        \begin{definition} \label{def:algebraic-set}
+            A subset $X \subset \mathbb{A}^n_k$ is an \emph{algebraic set} if $X = V(I)$ for some ideal $I$. Notice that by Corollary 3.3, $I$ is finitely generated. If $I = (f_1, \dots, f_r)$ then clearly
+            \begin{align*}
+                V(I) = \{P \in \mathbb{A}^n_k \mid f_i(P) = 0 \text{ for } i = 1, \dots, r\},
+            \end{align*}
+        so that an algebraic set is just a locus of points satisfying a finite number of polynomial equations.
+        \end{definition}
+    \end{frame}
+
+    \begin{frame}{Zariski Topology}
+        \begin{proposition}[Proposition-Definition] \label{prop:zariski}
+            The correspondence $V$ satisfies the following formal properties:
+            \begin{enumerate}
+            \item[(i)] $V(0) = \mathbb{A}^n_k$;\quad $V(A) = \emptyset$;
+            \item[(ii)] $I \subset J \implies V(J) \subset V(I)$;
+            \item[(iii)] $V(I_1 \cap I_2) = V(I_1) \cup V(I_2)$;
+            \item[(iv)] $V\left(\sum_i I_i\right) = \bigcap_i V(I_i)$.
+            \end{enumerate}
+            Hence the algebraic subsets of $\mathbb{A}^n_k$ form the closed sets of a topology on $\mathbb{A}^n_k$, the \emph{Zariski topology}.
+        \end{proposition}
+    \end{frame}
+
+
+    \begin{frame}{V-I Correspondence}
+
+        \begin{align*}
+            \{\text{ideals } J \subset A\} \longleftrightarrow \{\text{subsets } X \subset \mathbb{A}^n_k\}  \\
+            J \mapsto V(J) = \{P \in \mathbb{A}^n_k \mid f(P) = 0 \text{ for all } f \in J\}.
+        \end{align*}
+
+        As a kind of inverse to $V$ there is a correspondence
+        \begin{align*}
+            \{\text{ideals } J \subset A\} &\longleftarrow \{\text{subsets } X \subset \mathbb{A}^n_k\} \\
+            I(X) = \{f \in k[X_1, \dots, X_n] \mid f(P) = 0 \text{ for all } P \in X\}. &\mapsfrom X
+        \end{align*}
+        That is, $I$ takes a subset $X$ to the ideal of functions vanishing on it.
+    \end{frame}
+
+    \begin{frame}{Nullstellensatz}
+        
+    \end{frame}
+
+    \section{Affine Varieties}
+
+    \begin{frame}{Polynomial Maps}
+        \begin{definition}{Polynomial Maps}
+            Define $f \colon V \to W$ as polynomial maps, given by $m$ polynomial functions $f_1, \dots, f_m \in k[V],$, so that for $P \in V$,
+            \begin{align*}
+                f(P) = \bigl(f_1(P), \dots, f_m(P)\bigr) \in W.
+            \end{align*}
+        \end{definition}
+
+        \begin{itemize}
+            \item Keep in mind that if we have composite of $f$  with any polynomial function $g \in k[W]$ is again polynomial function on $V$. 
+            \item We can see that polynomial maps evaluate each coordinates by its polynomial functions, hence we have such proposition.
+        \end{itemize}
+
+        \begin{proposition}
+            Suppose we have $V \subset \A^n_k$, $W \subset \A^m_k$, and we write  $f = (f_1, \ldots, f_m)$, then 
+            \begin{align*}
+                f: V \to W \text{ is polynomial map} \iff \forall j, f_j = Y_j \circ f \in k[W] 
+            \end{align*}
+            by given $Y_j$ $j$-th coordinate function.
+        \end{proposition}
+        
+    \end{frame}
+
+
+    \begin{frame}
+        \begin{itemize}
+            \item Given polynomial map $f: V \to W$, now we define map 
+                \begin{align*}
+                    f^* : k[W] &\to k[V] \\
+                    g &\mapsto g \circ f
+                \end{align*}
+            \item Then $f^*$ is ring homomorphism, and in fact, it is k-algebra homomorphism.
+            \item Note that it went backwards: from coordinate ring of the target to that of the source.
+            \item Now with that, we propose a claim 
+            \begin{proposition}
+                Every $k$-algebra homomorphism $\Phi \colon k[W] \to k[V]$ is of the form $\Phi = f^*$ for a \emph{uniquely defined} polynomial map $f \colon V \to W$.
+            \end{proposition}
+        \end{itemize}
+
+        
+        
+
+    \end{frame}
+
+    \begin{frame}
+        \begin{itemize}
+            \item Before defining affine variety, we want the following claim.
+            
+            \begin{proposition}
+                Given $V \subset \A^n_k$, we have 
+                \begin{align*}
+                    V \text{ is irreducible} \iff I(V) \text{ prime ideal} \iff k[V] \text{ is integral domain}
+                \end{align*}
+            \end{proposition}
+            \textit{Sketch proof.} We shall prove the contrapositive $X$ reducible $\leftrightarrow$ $I(X)$ is not prime. If $X$ is  reducible, then we have $X = X_1 \cup X_2$ and choose $f_1 = I(X_1)\backslash I(X)$ and $f_2 = I(X_2) \backslash I(X)$, hence $f_1, f_2 \notin I(X)$ but $f_1f_2 \in I(X)$ since it vanishes there. If the ideal is not prime, then $\exists f_1, f_2 \notin I(X)$ but $f_1f_2 \in I(X)$. Construct $I_1 = (I(X), f_1)$ and $X_1 = V(I_1)$, while samewise with $X_2 = V(I_2)$, then $X = X_1 \cup X_2$. The second iff is obvious since $k[V] = k[X_1, \ldots, X_n]/I(V)$.      
+            
+            \item We want $V$ be irreducible, so that we can use $k[V]$ to define a quotient field, which will be shown later.
+        \end{itemize}
+        
+    \end{frame}
+
+    \begin{frame}{Affine Varieties}
+
+        \begin{definition}[Affine varieties]
+            An \emph{affine variety} over a field $k$ is an irreducible algebraic subset $V \subset \mathbb{A}^n_k$, equipped with its coordinate ring $k[V]$. Equivalently, it is a set $V$ together with a ring $k[V]$ of $k$-valued functions $f\colon V \to k$ such that:
+            \begin{enumerate}
+                \item $k[V]$ is a finitely generated $k$-algebra, and
+                \item for some choice $x_1, \dots, x_n$ of generators of $k[V]$ over $k$, the map
+                \begin{align*}
+                    V \to \mathbb{A}^n_k, \qquad P \mapsto \bigl(x_1(P), \dots, x_n(P)\bigr)
+                \end{align*}
+                embeds $V$ as an irreducible algebraic set.
+            \end{enumerate}
+        \end{definition}
+    \end{frame}
+
+    \begin{frame}{Morphism between Affine Varieties}
+        \begin{itemize}
+            \item Now we wish to know the mapping between affine varieties. 
+            \item Intuitively, we would use usual mapping consists of polynomial function, as previous shown.
+            \item However, it is too restrictive as we can have rational function.
+            \item For example, suppose we have Pythogoras equation $X^2 + Y^2 = Z^2$ and we wish to transform it into circle by $x = X/Z$ and $y = Y/Z$, so we have $x^2 + y^2 = 1$ so finally we can have parametrisation of $\lambda = \frac{x}{1-y}$, hence $x = \frac{2 \lambda}{\lambda^2 + 1}$ and $y = \frac{\lambda^2 - 1}{\lambda^2 + 1}$   
+            \item And notice that using the mapping of $f(x) = 1/x$ is not polynomial, hence we need to define rational mapping.
+        \end{itemize}
+        
+    \end{frame}
+
+    \begin{frame}{Rational Function}
+        \begin{itemize}
+            \item Given $V$ is irreducible and $k[V]$ domain integral, then define 
+            \begin{align*}
+                k(V) := \text{Quot}(k[V])
+            \end{align*}  
+            as $\text{Quot}(R)$ is quotient field of domain integral $R$. 
+
+            \item By this, we can write $f \in k(V)$ as $f = g/h$ for $h \neq 0$ (in the sense of zero polynomial).  
+            \item But notice $f$ is not well defined if $\exists P  \in V$ such that $h(P) = 0$.    
+            \item Hence we define as following 
+            \begin{definition}
+                Let $f \in k(V)$ and $P \in V$, define $f$ is \emph{regular} at $P$ if $h(P) \neq 0$ with $f = g/h$, $g,h \in k[V]$, and define \emph{domain of definition} of $f$ by 
+                \begin{align*}
+                    \text{dom } f := \{ P \in V \hspace{3pt} | \hspace{3pt} f \text{ is regular at } P \}
+                \end{align*}   
+                and define \emph{local ring} of $V$ at $P$ as 
+                \begin{align*}
+                    \OO_{V, P} := \{ f \in k(V) \hspace{3pt} | \hspace{3pt} f \text{ is regular at } P \}
+                \end{align*}      
+            \end{definition}
+            
+        \end{itemize}
+
+        
+    \end{frame}
+
+    \begin{frame}
+        \begin{itemize}
+            \item We seek the characteristics of the $\text{dom } f$, define $D_f := \{ h \in k[V] \hspace{3pt} | \hspace{3pt} hf \in k[V] \} $, then
+            \begin{align*}
+                V \backslash \text{dom } f = \{ P \in V \hspace{3pt} | \hspace{3pt} h(P) = 0 \} = V(D_f)
+            \end{align*}
+            then $\text{dom } f $ open in Zariski Topology. 
+        \end{itemize}
+        
+    \end{frame}
+
+
+
+    \section{Sheaf \text{\&} Affine Scheme}
+
+    \begin{frame}
+        
+    \end{frame}
+
+    \section{Closing \text{\&} References}
+
+    \begin{frame}{References}
+        \begin{enumerate}
+            \item miles Reid
+            \item hortz wedhorn
+            \item pak rizal 
+        \end{enumerate}
+        
+    \end{frame}
+
+\end{document}
