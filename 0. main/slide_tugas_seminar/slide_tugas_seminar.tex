@@ -84,7 +84,7 @@ Dosen Penguji:
   Program Studi Sarjana Matematika \\
   Fakultas Matematika dan Ilmu Pengetahuan Alam \\
   Institut Teknologi Bandung \\[1cm]
-  October 29, 2026} % presentation date (was \today)
+  \today} % presentation date (was \today)
 
 \begin{document}
     \frame{\titlepage}
@@ -102,15 +102,26 @@ Dosen Penguji:
             \item While the key machinaries of the topic are Sheaf Theory, Invertible Sheaves, and Weil/Cartier Divisors. 
             \item Hence in this presentation, we shall present some foundational topics.
         \end{itemize}
-        
     \end{frame}
 
 
     \begin{frame}{Motivation}
         \begin{itemize}
-            \item Given a polynomial $p(x)$, we wished to understand the geometry of the solutions of $p(x) = 0$.
+            \item Given polynomials $p_1, \dots, p_r \in k[X_1, \dots, X_n]$, we wish to understand the geometry of the solutions of $p_1 = \dots = p_r = 0$.
+            \item For example, $p(x,y) = x^2 + y^2 - 1$ cuts out a circle: one equation in the plane gives a \emph{curve}.
+            \item On a curve we can ask for the zeros and poles of a rational function, \emph{together with their multiplicities}.
+            \item For example, $f = \dfrac{x-1}{x^2}$ on $\A^1_k$ has a simple zero at $1$ and a double pole at $0$. We record this as the formal sum $[1] - 2[0]$.
+            \item Such formal sums of points are called \alert{divisors}. To make this precise, we need rings, topology and sheaves.
         \end{itemize}
-        
+    \end{frame}
+
+    \begin{frame}{Roadmap}
+        \begin{enumerate}
+            \item \textbf{Noetherian rings, Zariski topology, Nullstellensatz:} the dictionary between algebra and geometry.
+            \item \textbf{Affine varieties:} coordinate rings, polynomial maps, rational functions, local rings.
+            \item \textbf{Sheaves and affine schemes:} gluing local data; $\Spec A$ and its structure sheaf.
+            \item \textbf{Looking ahead:} Weil divisors, Cartier divisors, invertible sheaves and $\Pic$ (the main body of the paper).
+        \end{enumerate}
     \end{frame}
 
     \section{Noetherian, Zariski and Nullstellesatz}
@@ -170,7 +181,7 @@ Dosen Penguji:
         \end{corollary}
     \end{frame}
 
-    \begin{frame}{Algebraic set \& Zariski}
+    \begin{frame}{Algebraic set}
         \begin{definition} \label{def:algebraic-set}
             A subset $X \subset \mathbb{A}^n_k$ is an \emph{algebraic set} if $X = V(I)$ for some ideal $I$. Notice that by Corollary 3.3, $I$ is finitely generated. If $I = (f_1, \dots, f_r)$ then clearly
             \begin{align*}
@@ -196,8 +207,9 @@ Dosen Penguji:
 
     \begin{frame}{V-I Correspondence}
 
+        Let $A = k[X_1, \dots, X_n]$.
         \begin{align*}
-            \{\text{ideals } J \subset A\} \longleftrightarrow \{\text{subsets } X \subset \mathbb{A}^n_k\}  \\
+            \{\text{ideals } J \subset A\} \longrightarrow \{\text{subsets } X \subset \mathbb{A}^n_k\}  \\
             J \mapsto V(J) = \{P \in \mathbb{A}^n_k \mid f(P) = 0 \text{ for all } f \in J\}.
         \end{align*}
 
@@ -209,11 +221,66 @@ Dosen Penguji:
         That is, $I$ takes a subset $X$ to the ideal of functions vanishing on it.
     \end{frame}
 
-    \begin{frame}{Nullstellensatz}
-        
+    \begin{frame}{Radical Ideal}
+        \begin{itemize}
+            \item Before stating the Nullstellensatz, we define the radical of an ideal in order to simplify the statement.
+            \begin{definition}[Radical ideal]
+                Let $I$ be an ideal of $A = k[X_1, \ldots, X_n]$. The \textbf{radical} of $I$ is
+                \begin{align*}
+                    \rad I = \{ f \in A : f^m \in I \text{ for some integer } m \geq 1\}.
+                \end{align*}
+                If $I = \rad I$, we say that $I$ is a \textbf{radical ideal}.
+            \end{definition}
+            \item $\rad I$ is an ideal containing $I$, and $V(\rad I) = V(I)$.
+            \item Every prime ideal is radical, and $I(X)$ is a radical ideal for every $X \subseteq k^n$.
+            \item For example, in $k[X]$ we have $\rad\,(X^2) = (X)$. Both ideals define the same algebraic set $\{0\}$, so the algebraic set does not remember the multiplicity.
+        \end{itemize}
+    \end{frame}
+
+    \begin{frame}{Hilbert's Nullstellensatz}
+        \begin{theorem}[Nullstellensatz, weak form]
+            Let $k$ be an algebraically closed field and $A = k[X_1, \ldots, X_n]$. If $\mm$ is a maximal ideal of $A$, then
+            \begin{align*}
+                \mm = (X_1 - a_1,\, X_2 - a_2,\, \ldots,\, X_n-a_n)
+            \end{align*}
+            for some point $(a_1, a_2, \ldots, a_n) \in k^n$.
+        \end{theorem}
+
+        \begin{theorem}[Nullstellensatz, strong form]
+            Let $k$ be an algebraically closed field and $A = k[X_1, \ldots, X_n]$. If $J$ is an ideal of $A$ with $J \neq A$, then $V(J) \neq \emptyset$. Furthermore, for every ideal $J$ of $A$,
+            \begin{align*}
+                I(V(J)) = \rad J.
+            \end{align*}
+        \end{theorem}
+    \end{frame}
+
+    \begin{frame}{The Algebra--Geometry Dictionary}
+        \begin{corollary}
+            The maps $X \mapsto I(X)$ and $J \mapsto V(J)$ are mutually inverse, inclusion-reversing bijections:
+            \begin{center}
+                \upshape
+                \begin{tabular}{rcl}
+                    \toprule
+                    \textbf{Geometry} (in $k^n$) & & \textbf{Algebra} (in $A = k[X_1,\ldots,X_n]$) \\
+                    \midrule
+                    algebraic sets & $\longleftrightarrow$ & radical ideals \\
+                    irreducible & $\longleftrightarrow$ & prime ideals \\
+                    points & $\longleftrightarrow$ & maximal ideals \\
+                    \bottomrule
+                \end{tabular}
+            \end{center}
+        \end{corollary}
+        \begin{itemize}
+            \item So the geometry of $k^n$ can be recovered from the ring $A$ alone.
+            \item \textbf{Idea of scheme theory:} replace $A$ by an arbitrary commutative ring with $1$, and take \emph{all} prime ideals as the points of the space.
+        \end{itemize}
     \end{frame}
 
     \section{Affine Varieties}
+
+    \begin{frame}{Outline of this section}
+        
+    \end{frame}
 
     \begin{frame}{Polynomial Maps}
         \begin{definition}{Polynomial Maps}
@@ -256,7 +323,6 @@ Dosen Penguji:
 
         
         
-
     \end{frame}
 
     \begin{frame}
@@ -316,7 +382,7 @@ Dosen Penguji:
             \begin{definition}
                 Let $f \in k(V)$ and $P \in V$, define $f$ is \emph{regular} at $P$ if $h(P) \neq 0$ with $f = g/h$, $g,h \in k[V]$, and define \emph{domain of definition} of $f$ by 
                 \begin{align*}
-                    \text{dom } f := \{ P \in V \hspace{3pt} | \hspace{3pt} f \text{ is regular at } P \}
+                    \operatorname{dom} f := \{ P \in V \hspace{3pt} | \hspace{3pt} f \text{ is regular at } P \}
                 \end{align*}   
                 and define \emph{local ring} of $V$ at $P$ as 
                 \begin{align*}
@@ -331,11 +397,56 @@ Dosen Penguji:
 
     \begin{frame}
         \begin{itemize}
-            \item We seek the characteristics of the $\text{dom } f$, define $D_f := \{ h \in k[V] \hspace{3pt} | \hspace{3pt} hf \in k[V] \} $, then
+            \item We seek the characteristics of the $\operatorname{dom} f$, define $D_f := \{ h \in k[V] \hspace{3pt} | \hspace{3pt} hf \in k[V] \} $, then
             \begin{align*}
-                V \backslash \text{dom } f = \{ P \in V \hspace{3pt} | \hspace{3pt} h(P) = 0 \} = V(D_f)
+                V \backslash \operatorname{dom} f = \{ P \in V \hspace{3pt} | \hspace{3pt} h(P) = 0 \} = V(D_f)
             \end{align*}
-            then $\text{dom } f $ open in Zariski Topology. 
+            then $\operatorname{dom} f $ open in Zariski Topology. Since it is not empty, then it is dense.
+            \item $\operatorname{dom} f = V$ if and only if $f \in k[V]$, i.e.\ $f$ is a polynomial function, since 
+            \begin{align*}
+                \operatorname{dom} f = V \iff V(D_f) = \emptyset \iff 1 \in D_f \iff f \in k[V] 
+            \end{align*}
+            \item For any $h \in k[V]$, let $V_h = V \setminus V(h) = \{ P \in V \mid h(P) \neq 0\}$. Then
+            \begin{align*}
+                \operatorname{dom} f \supset V_h \quad\Longleftrightarrow\quad f \in k[V][h^{-1}].
+            \end{align*}
+            since 
+            \begin{align*}
+                \operatorname{dom} f \supset V_h \iff h \text{ vanishes on } D_f \iff h^n \in D_f \text{ for some n} \iff f = g/h^n \in k[V][h^{-1}]
+            \end{align*}
+        \end{itemize}
+        
+    \end{frame}
+
+    \begin{frame}
+        \begin{itemize}
+            
+            \item Hence, we can write the local ring as such 
+            \begin{align*}
+                \OO_{V, P} = k[V][(h^{-1} \hspace{3pt} | \hspace{3pt} h(P) \neq 0)]
+            \end{align*}
+            \item Finally, we can define rational map 
+            \begin{definition}
+                A \emph{rational map} $f \colon V \dashrightarrow \mathbb{A}^m_k$ is a partially defined map given by rational functions $f_1, \dots, f_n \in k(V)$, that is,
+                \begin{align*}
+                    f(P) = \bigl(f_1(P), \dots, f_m(P)\bigr) \quad \text{for all } P \in \bigcap_i \operatorname{dom} f_i.
+                \end{align*}
+                By definition, $\operatorname{dom} f = \bigcap_i \operatorname{dom} f_i$. $f$ is said to be \emph{regular} at $P \in V$ if and only if $P \in \operatorname{dom} f$.
+
+                A rational map $f \colon V \dashrightarrow W$ between two affine varieties $V \subset \mathbb{A}^n_k$ and $W \subset \mathbb{A}^m_k$ is defined to be a rational map $f \colon V \dashrightarrow \mathbb{A}^m_k$ such that $f(\operatorname{dom} f) \subset W$.
+            \end{definition}
+        \end{itemize}
+        
+    \end{frame}
+
+    \begin{frame}
+        \begin{itemize}
+            \item For example, consider $C = V(x^2 + y^2 - 1)$. The maps
+            \begin{align*}
+                \A^1 \dashrightarrow C,\ \lambda \mapsto \left(\tfrac{2\lambda}{\lambda^2+1}, \tfrac{\lambda^2-1}{\lambda^2+1}\right), \qquad
+                C \dashrightarrow \A^1,\ (x,y) \mapsto \tfrac{x}{1-y}
+            \end{align*}
+            although the maps are not polynomial (the first is undefined where $\lambda^2 + 1 = 0$, the second where $y = 1$).
         \end{itemize}
         
     \end{frame}
@@ -344,17 +455,84 @@ Dosen Penguji:
 
     \section{Sheaf \text{\&} Affine Scheme}
 
-    \begin{frame}
+    \begin{frame}{Outline of this section}
         
+    \end{frame}
+
+    \begin{frame}{Why Sheaves?}
+        \begin{itemize}
+            \item Now we back to Nullstellensatz, where the idea is to replace the $A$ by an arbitrary commutative ring with $1$, and take \emph{all} prime ideals as the points of the space. 
+            \item Before that, we need to define several objects.
+            
+            \begin{definition}[Presheaf]
+            Let $X$ be a topological space. A \emph{presheaf} $\FF$ of rings on $X$ assigns
+            \begin{itemize}
+                \item to each open $U \subset X$ a ring $\FF(U)$ (the \emph{sections} over $U$), and
+                \item to each inclusion $V \subset U$ a ring homomorphism $\rho_{UV} \colon \FF(U) \to \FF(V)$, written $s \mapsto s|_V$,
+            \end{itemize}
+            such that $\FF(\emptyset) = 0$, $\rho_{UU} = \text{id}$, and $\rho_{VW} \circ \rho_{UV} = \rho_{UW}$ for $W \subset V \subset U$.
+        \end{definition}
+        \end{itemize}
+        
+    \end{frame}
+
+    \begin{frame}{Sheaf Axioms}
+        \begin{itemize}
+            \item Then we shall begin to define sheaf 
+            \begin{definition}[Sheaf]
+            A presheaf $\FF$ on $X$ is a \emph{sheaf} if for every open $U$ and every open cover $U = \bigcup_i U_i$:
+            \begin{enumerate}
+                \item[(S1)] \emph{(Locality)} if $s \in \FF(U)$ and $s|_{U_i} = 0$ for all $i$, then $s = 0$;
+                \item[(S2)] \emph{(Gluing)} if $s_i \in \FF(U_i)$ satisfy $s_i|_{U_i \cap U_j} = s_j|_{U_i \cap U_j}$ for all $i, j$, then there is $s \in \FF(U)$ with $s|_{U_i} = s_i$ for all $i$.
+            \end{enumerate}
+            (By S1, the section $s$ in S2 is unique.)
+        \end{definition}
+            \item For examples, Continuous real functions on a topological space $X$ form a sheaf.
+            \item And related example, for an affine variety $V$, $U \mapsto \OO_V(U)$ is a sheaf, the \emph{sheaf of regular functions}.
+            \item For non-example, the \emph{constant} presheaf $U \mapsto \mathbb{R}$ is not a sheaf: if $U = U_1 \sqcup U_2$ is disconnected, the sections $0$ on $U_1$ and $1$ on $U_2$ agree on the (empty) overlap but do not glue to a constant on $U$.
+        \end{itemize}
+    \end{frame}
+
+    \begin{frame}{Stalks}
+        \begin{definition}[Stalk]
+            For a presheaf $\FF$ on $X$ and $x \in X$, the \emph{stalk} at $x$ is
+            \begin{align*}
+                \FF_x := \varinjlim_{U \ni x} \FF(U),
+            \end{align*}
+            that is, germs of sections: $s \in \FF(U)$ and $t \in \FF(U')$ define the same germ iff $s|_W = t|_W$ for some open $W \ni x$ inside $U \cap U'$.
+        \end{definition}
+        \begin{itemize}
+            \item For the sheaf $\OO_V$ of an affine variety, the stalk at $P \in V$ is exactly the local ring $\OO_{V,P}$ defined earlier.
+            \item Stalks are where we do ``local'' algebra; they are what will let us define $\mathrm{ord}_P$ on a curve.
+        \end{itemize}
+    \end{frame}
+
+    \begin{frame}{The Spectrum of a Ring}
+        \begin{definition}[$\Spec A$]
+            Let $A$ be a commutative ring with $1$. As a set,
+            \begin{align*}
+                \Spec A := \{ \pp \subset A \mid \pp \text{ is a prime ideal} \}.
+            \end{align*}
+            For an ideal $I \subset A$ put $V(I) = \{ \pp \in \Spec A \mid \pp \supseteq I \}$.
+        \end{definition}
+        \begin{itemize}
+            \item $V(I)$ satisfies the same four properties as in the Zariski Topology slide, so the $V(I)$ are the closed sets of a topology on $\Spec A$ (the \emph{Zariski topology}).
+            \item For $f \in A$, the \emph{principal open sets}
+            \begin{align*}
+                D(f) := \Spec A \setminus V(f) = \{ \pp \mid f \notin \pp \}
+            \end{align*}
+            form a basis of the topology.
+            \item $\{\pp\}$ is closed iff $\pp$ is maximal; in general $\overline{\{\pp\}} = V(\pp)$. If $A$ is a domain, $(0)$ is a \emph{generic point}: $\overline{\{(0)\}} = \Spec A$.
+        \end{itemize}
     \end{frame}
 
     \section{Closing \text{\&} References}
 
     \begin{frame}{References}
         \begin{enumerate}
-            \item miles Reid
-            \item hortz wedhorn
-            \item pak rizal 
+            \item M. Reid, \emph{Undergraduate Algebraic Geometry}, London Mathematical Society Student Texts 12, Cambridge University Press, 1988.
+            \item U. G\"ortz and T. Wedhorn, \emph{Algebraic Geometry I: Schemes with Examples and Exercises}, Springer Vieweg, 2010.
+            \item 
         \end{enumerate}
         
     \end{frame}
